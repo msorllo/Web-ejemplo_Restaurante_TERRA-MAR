@@ -2,4 +2,8 @@
 # no hace falta para que la web funcione y no debe publicarse.
 _origen/
 
+# Duplicado exacto de "La armonía perfecta para cada plato.jpeg", usado solo
+# como referencia para recortar assets/img/bar-*.webp.
+assets/principal noche.jpeg
+
 .vercel
