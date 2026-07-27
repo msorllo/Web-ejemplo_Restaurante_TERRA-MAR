@@ -81,6 +81,21 @@ window.TM = window.TM || {};
     if (TM.alRedimensionar) { TM.alRedimensionar(medir); }
     anclable.addEventListener('change', medir);
     reducido.addEventListener('change', medir);
+
+    // El punto de partida del recorrido ("arriba") se queda obsoleto si algo
+    // por encima de la galería cambia de alto después de medir: el titular
+    // del hero es más largo de noche, o una fuente que termina de cargar
+    // reflowa el texto. Sin esto, el scroll y las fotos dejan de ir
+    // sincronizados y la galería parece atascada o rota.
+    if ('ResizeObserver' in win) {
+      var reMedirPendiente = false;
+      var ro = new ResizeObserver(function () {
+        if (reMedirPendiente) return;
+        reMedirPendiente = true;
+        win.requestAnimationFrame(function () { reMedirPendiente = false; medir(); });
+      });
+      ro.observe(doc.body);
+    }
   }
 
   // Este script va al final del <body>: el marcado que necesita ya está
