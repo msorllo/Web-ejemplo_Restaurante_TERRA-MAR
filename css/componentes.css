@@ -1,0 +1,715 @@
+/* ==========================================================================
+   TERRA & MAR BISTRÓ — componentes.css
+   Navegación, botones, controles, tarjetas, formularios y pie.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Botones
+   -------------------------------------------------------------------------- */
+.btn {
+  --btn-y: 14px;
+  --btn-x: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6em;
+  padding: var(--btn-y) var(--btn-x);
+  border-radius: var(--r-full);
+  font-family: var(--f-cuerpo);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transition:
+    color var(--dur-rapida) var(--ease),
+    border-color var(--dur-rapida) var(--ease),
+    transform var(--dur-rapida) var(--ease),
+    box-shadow var(--dur-rapida) var(--ease);
+}
+.btn:active { transform: translateY(1px) scale(.99); }
+
+/* El relleno crece desde abajo al pasar por encima: el mismo gesto que una
+   ola subiendo. Es la micro-interacción firma de toda la web. */
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform var(--dur-media) var(--ease);
+}
+.btn:hover::before, .btn:focus-visible::before { transform: scaleY(1); }
+
+.btn--solido {
+  background: var(--c-acento-fuerte);
+  color: #FFF8F0;
+  box-shadow: var(--sombra-suave);
+}
+.btn--solido::before { background: var(--c-tinta); }
+[data-tema='noche'] .btn--solido { color: #150F0B; }
+[data-tema='noche'] .btn--solido::before { background: var(--c-laton); }
+
+.btn--fantasma {
+  border: 1px solid var(--c-linea-fuerte);
+  color: var(--c-tinta);
+  background: transparent;
+}
+.btn--fantasma::before { background: var(--c-tinta); }
+.btn--fantasma:hover, .btn--fantasma:focus-visible {
+  color: var(--c-fondo);
+  border-color: var(--c-tinta);
+}
+
+.btn--claro {
+  border: 1px solid rgba(255, 255, 255, .5);
+  color: #FFF8F0;
+  background: rgba(255, 255, 255, .06);
+  backdrop-filter: blur(6px);
+}
+.btn--claro::before { background: #FFF8F0; }
+.btn--claro:hover, .btn--claro:focus-visible { color: var(--c-tinta); border-color: #FFF8F0; }
+
+.btn--pequeno { --btn-y: 10px; --btn-x: 20px; font-size: var(--t-xs); }
+
+/* Enlace con subrayado que se dibuja */
+.enlace {
+  position: relative;
+  font-weight: 600;
+  color: var(--c-acento-fuerte);
+  padding-bottom: 2px;
+}
+.enlace::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%; height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--dur-media) var(--ease);
+}
+.enlace:hover::after, .enlace:focus-visible::after { transform: scaleX(1); transform-origin: left; }
+
+/* --------------------------------------------------------------------------
+   2. Navegación
+   -------------------------------------------------------------------------- */
+.nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  height: var(--nav-alto);
+  display: flex;
+  align-items: center;
+  transition:
+    height var(--dur-media) var(--ease),
+    background-color var(--dur-media) var(--ease),
+    box-shadow var(--dur-media) var(--ease),
+    border-color var(--dur-media) var(--ease);
+  border-bottom: 1px solid transparent;
+}
+
+/* Sobre el hero: transparente y con texto claro */
+.nav--sobre-hero { color: #FFF8F0; }
+.nav--sobre-hero .nav__enlace { color: rgba(255, 248, 240, .88); }
+.nav--sobre-hero .nav__control { border-color: rgba(255, 248, 240, .34); color: #FFF8F0; }
+.nav--sobre-hero .btn--fantasma { border-color: rgba(255, 248, 240, .34); color: #FFF8F0; }
+.nav--sobre-hero .btn--fantasma::before { background: #FFF8F0; }
+.nav--sobre-hero .btn--fantasma:hover, .nav--sobre-hero .btn--fantasma:focus-visible { color: var(--c-tinta); border-color: #FFF8F0; }
+
+/* Al pasar el hero: barra de cristal condensada */
+.nav--condensada {
+  height: 62px;
+  background: var(--glass-fondo);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom-color: var(--c-linea);
+  box-shadow: var(--sombra-suave);
+  color: var(--c-tinta);
+}
+.nav--condensada .nav__enlace { color: var(--c-tinta-suave); }
+.nav--condensada .nav__control { border-color: var(--c-linea-fuerte); color: var(--c-tinta); }
+
+.nav__interior {
+  width: 100%;
+  max-width: var(--ancho);
+  margin-inline: auto;
+  padding-inline: var(--pad-lateral);
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 2.5vw, 36px);
+}
+
+.nav__marca {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-right: auto;
+  flex-shrink: 0;
+}
+.nav__marca img {
+  width: 40px; height: 40px;
+  transition: width var(--dur-media) var(--ease), height var(--dur-media) var(--ease);
+}
+.nav--condensada .nav__marca img { width: 34px; height: 34px; }
+/* El logo es terracota sobre crema; sobre la foto del hero se aclara */
+.nav--sobre-hero .nav__marca img { filter: brightness(0) invert(1); }
+[data-tema='noche'] .nav--condensada .nav__marca img { filter: brightness(1.35) saturate(1.1); }
+
+.nav__nombre {
+  font-family: var(--f-display);
+  font-variation-settings: 'opsz' 40;
+  font-size: 1.06rem;
+  font-weight: 600;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  line-height: 1;
+  white-space: nowrap;   /* "TERRA & MAR" nunca parte de línea */
+}
+.nav__nombre small {
+  display: block;
+  font-size: .58em;
+  letter-spacing: .3em;
+  font-weight: 400;
+  opacity: .7;
+  margin-top: 3px;
+}
+
+.nav__enlaces {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 2vw, 30px);
+}
+
+.nav__enlace {
+  position: relative;
+  font-size: var(--t-sm);
+  font-weight: 500;
+  letter-spacing: .04em;
+  padding: 6px 0;
+  transition: color var(--dur-rapida) var(--ease);
+}
+.nav__enlace::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%; height: 1px;
+  background: var(--c-acento);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--dur-media) var(--ease);
+}
+.nav__enlace:hover, .nav__enlace:focus-visible { color: var(--c-acento); }
+.nav__enlace:hover::after, .nav__enlace:focus-visible::after,
+.nav__enlace[aria-current='true']::after { transform: scaleX(1); transform-origin: left; }
+
+.nav__acciones { display: flex; align-items: center; gap: 10px; }
+
+/* Botones circulares de tema / idioma */
+.nav__control {
+  width: 38px; height: 38px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--c-linea-fuerte);
+  border-radius: var(--r-full);
+  color: var(--c-tinta);
+  transition:
+    background-color var(--dur-rapida) var(--ease),
+    color var(--dur-rapida) var(--ease),
+    border-color var(--dur-rapida) var(--ease),
+    transform var(--dur-rapida) var(--ease);
+}
+.nav__control:hover { background: var(--c-acento-fuerte); border-color: var(--c-acento-fuerte); color: #FFF8F0; transform: rotate(-12deg); }
+.nav__control svg { width: 17px; height: 17px; }
+
+/* El icono sol/luna gira al cambiar de tema.
+   !important: la regla global de .tema-cambiando (base.css) fuerza su propio
+   `transition` en TODOS los elementos durante el cambio de tema para que los
+   colores hagan crossfade; sin este !important esa regla pisaba la de aquí
+   y el sol/la luna pasaban de golpe en vez de girar y desvanecerse. */
+.icono-tema__sol, .icono-tema__luna { transition: opacity .4s var(--ease), transform .5s var(--ease) !important; }
+.icono-tema__luna { opacity: 0; transform: rotate(-70deg) scale(.4); }
+[data-tema='noche'] .icono-tema__sol { opacity: 0; transform: rotate(70deg) scale(.4); }
+[data-tema='noche'] .icono-tema__luna { opacity: 1; transform: none; }
+.icono-tema { position: relative; width: 17px; height: 17px; }
+.icono-tema > svg { position: absolute; inset: 0; }
+
+/* Selector de idioma */
+.idiomas {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--c-linea-fuerte);
+  border-radius: var(--r-full);
+  padding: 3px;
+  gap: 2px;
+}
+.nav--sobre-hero .idiomas { border-color: rgba(255, 248, 240, .34); }
+.idiomas button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .09em;
+  padding: 5px 10px 5px 7px;
+  border-radius: var(--r-full);
+  color: inherit;
+  /* .58 dejaba el idioma inactivo en 2,95:1 de contraste: por debajo del AA */
+  opacity: .78;
+  transition: opacity var(--dur-rapida) var(--ease), background-color var(--dur-rapida) var(--ease);
+}
+.idiomas button:hover { opacity: 1; }
+
+.idiomas__bandera {
+  width: 16px;
+  height: 11px;
+  flex: none;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .18) inset;
+  overflow: hidden;
+}
+.idiomas button.esta-activo {
+  opacity: 1;
+  background: var(--c-acento-fuerte);
+  color: #FFF8F0;
+}
+/* De noche el acento es mucho mas claro: sobre el, el texto va oscuro. */
+[data-tema='noche'] .idiomas button.esta-activo,
+[data-tema='noche'] .nav__control:hover { color: #150F0B; }
+
+/* --- Idioma como desplegable: el disparador enseña solo el actual -------- */
+.idiomas--desplegable { position: relative; padding: 0; border: 0; }
+
+.idiomas__disparador {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 11px 6px 8px;
+  border: 1px solid var(--c-linea-fuerte);
+  border-radius: var(--r-full);
+  color: inherit;
+  transition: background-color var(--dur-rapida) var(--ease), border-color var(--dur-rapida) var(--ease);
+}
+.nav--sobre-hero .idiomas--desplegable .idiomas__disparador { border-color: rgba(255, 248, 240, .34); }
+.idiomas__disparador:hover { background: color-mix(in srgb, var(--c-tinta) 7%, transparent); }
+.nav--sobre-hero .idiomas__disparador:hover { background: rgba(255, 248, 240, .1); }
+
+.idiomas__actual { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; letter-spacing: .09em; }
+
+.idiomas__flecha {
+  width: 9px; height: 6px; flex: none;
+  transition: transform var(--dur-rapida) var(--ease);
+}
+.idiomas--desplegable.esta-abierto .idiomas__flecha { transform: rotate(180deg); }
+
+.idiomas__menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 45;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 168px;
+  padding: 7px;
+  background: var(--c-fondo);
+  border: 1px solid var(--c-linea);
+  border-radius: var(--r-md);
+  box-shadow: var(--sombra-alta);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px) scale(.97);
+  transform-origin: top right;
+  transition: opacity var(--dur-rapida) var(--ease), transform var(--dur-rapida) var(--ease), visibility 0s var(--dur-rapida);
+}
+/* Una puntita que conecta el menú con el botón que lo abre: sin ella parece
+   una tarjeta suelta en vez de una extensión del disparador. */
+.idiomas__menu::before {
+  content: '';
+  position: absolute;
+  top: -5px; right: 14px;
+  width: 9px; height: 9px;
+  background: var(--c-fondo);
+  border-inline-start: 1px solid var(--c-linea);
+  border-block-start: 1px solid var(--c-linea);
+  transform: rotate(45deg);
+}
+.idiomas--desplegable.esta-abierto .idiomas__menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  transition: opacity var(--dur-rapida) var(--ease), transform var(--dur-rapida) var(--ease), visibility 0s;
+}
+.idiomas__menu button {
+  width: 100%;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: normal;
+  text-transform: none;
+  /* El menú siempre tiene fondo propio (var(--c-fondo)), aunque el disparador
+     esté sobre el hero: sin fijar el color aquí, heredaba el texto claro de
+     .nav--sobre-hero y quedaba invisible sobre el fondo claro del menú. */
+  color: var(--c-tinta);
+  transition: background-color var(--dur-rapida) var(--ease), color var(--dur-rapida) var(--ease), transform var(--dur-rapida) var(--ease);
+}
+.idiomas__menu button:hover:not(.esta-activo) {
+  background: color-mix(in srgb, var(--c-acento-fuerte) 20%, transparent);
+  color: var(--c-acento-fuerte);
+  transform: translateX(3px);
+}
+[data-tema='noche'] .idiomas__menu button:hover:not(.esta-activo) { color: var(--c-acento); }
+.idiomas__menu .idiomas__bandera { width: 19px; height: 13px; }
+
+/* En el menú móvil el desplegable cuelga hacia arriba: no hay sitio debajo */
+.menu-movil .idiomas__menu { top: auto; bottom: calc(100% + 10px); right: auto; left: 0; transform-origin: bottom left; }
+.menu-movil .idiomas__menu::before { top: auto; bottom: -5px; right: auto; left: 14px; border-inline-start: 0; border-block-start: 0; border-inline-end: 1px solid var(--c-linea); border-block-end: 1px solid var(--c-linea); }
+
+/* En el menú móvil el desplegable cuelga hacia arriba: no hay sitio debajo */
+.menu-movil .idiomas__menu { top: auto; bottom: calc(100% + 9px); right: auto; left: 0; }
+
+/* Hamburguesa — las barras se posicionan en absoluto respecto al centro del
+   botón: así la geometría de la X no depende de cómo el layout reparta filas. */
+.nav__hamburguesa { display: none; position: relative; width: 42px; height: 42px; }
+.nav__hamburguesa span {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 22px; height: 1.6px;
+  margin-left: -11px; margin-top: -.8px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform var(--dur-media) var(--ease), opacity var(--dur-rapida) var(--ease);
+}
+.nav__hamburguesa span:nth-child(1) { transform: translateY(-7px); }
+.nav__hamburguesa span:nth-child(3) { transform: translateY(7px); }
+.menu-abierto .nav__hamburguesa span:nth-child(1) { transform: rotate(45deg); }
+.menu-abierto .nav__hamburguesa span:nth-child(2) { opacity: 0; transform: scaleX(.2); }
+.menu-abierto .nav__hamburguesa span:nth-child(3) { transform: rotate(-45deg); }
+
+/* Con el menú desplegado la barra adopta los colores de la página: sobre el
+   panel del menú, el texto claro heredado del hero sería invisible en día. */
+.menu-abierto .nav--sobre-hero { color: var(--c-tinta); }
+.menu-abierto .nav--sobre-hero .nav__enlace { color: var(--c-tinta-suave); }
+.menu-abierto .nav--sobre-hero .nav__marca img { filter: none; }
+.menu-abierto .nav--sobre-hero .nav__control,
+.menu-abierto .nav--sobre-hero .idiomas { border-color: var(--c-linea-fuerte); color: var(--c-tinta); }
+[data-tema='noche'] .menu-abierto .nav--sobre-hero .nav__marca img { filter: brightness(1.35) saturate(1.1); }
+
+/* --------------------------------------------------------------------------
+   3. Menú móvil
+   -------------------------------------------------------------------------- */
+.menu-movil {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: var(--c-fondo);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  padding: calc(var(--nav-alto) + 24px) var(--pad-lateral) 40px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-12px);
+  transition:
+    opacity var(--dur-media) var(--ease),
+    transform var(--dur-media) var(--ease),
+    visibility var(--dur-media);
+}
+.menu-abierto .menu-movil { opacity: 1; visibility: visible; transform: none; }
+
+.menu-movil a {
+  font-family: var(--f-display);
+  font-size: clamp(1.9rem, 8vw, 2.6rem);
+  font-weight: 500;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--c-linea);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .5s var(--ease), transform .5s var(--ease);
+}
+.menu-abierto .menu-movil a { opacity: 1; transform: none; transition-delay: calc(var(--i, 0) * 55ms + 90ms); }
+
+.menu-movil__pie {
+  margin-top: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* --------------------------------------------------------------------------
+   4. Tarjetas
+   -------------------------------------------------------------------------- */
+.tarjeta {
+  background: var(--c-fondo-alt);
+  border: 1px solid var(--c-linea);
+  border-radius: var(--r-lg);
+  padding: clamp(24px, 3vw, 38px);
+  transition:
+    transform var(--dur-media) var(--ease),
+    box-shadow var(--dur-media) var(--ease),
+    border-color var(--dur-media) var(--ease);
+}
+.tarjeta:hover { transform: translateY(-4px); box-shadow: var(--sombra-alta); border-color: var(--c-linea-fuerte); }
+
+.tarjeta__num {
+  display: block;
+  font-family: var(--f-display);
+  font-variation-settings: 'opsz' 90;
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
+  font-weight: 400;
+  color: var(--c-acento);
+  line-height: 1;
+  margin-bottom: clamp(14px, 1.8vw, 22px);
+}
+.tarjeta h3 + p { margin-top: 10px; }
+
+/* --- Tarjeta que gira en 3D: el frente solo enseña el título ------------- */
+.tarjeta--giro {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  perspective: 1500px;
+}
+.tarjeta--giro:hover { transform: none; box-shadow: none; }
+.tarjeta--giro:focus-visible { outline: none; }
+.tarjeta--giro:focus-visible .tarjeta__cara--frente { border-color: var(--c-acento); }
+
+.tarjeta__interior {
+  position: relative;
+  height: 100%;
+  min-height: clamp(230px, 24vw, 288px);
+  transition: transform .8s var(--ease);
+  transform-style: preserve-3d;
+}
+.tarjeta--giro.esta-girada .tarjeta__interior { transform: rotateY(180deg); }
+
+@media (hover: hover) and (pointer: fine) {
+  .tarjeta--giro:hover .tarjeta__interior { transform: rotateY(180deg); }
+}
+
+.tarjeta__cara {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(24px, 3vw, 38px);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--c-linea);
+  background: var(--c-fondo-alt);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: border-color var(--dur-media) var(--ease), box-shadow var(--dur-media) var(--ease);
+}
+.tarjeta--giro:hover .tarjeta__cara--frente { box-shadow: var(--sombra-alta); border-color: var(--c-linea-fuerte); }
+
+.tarjeta__cara--frente { justify-content: space-between; }
+.tarjeta__pista {
+  align-self: flex-start;
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--c-tinta-tenue);
+  opacity: .7;
+}
+
+.tarjeta__cara--dorso {
+  transform: rotateY(180deg);
+  background: var(--c-acento-fuerte);
+  border-color: var(--c-acento-fuerte);
+  color: #FFF8F0;
+  justify-content: center;
+}
+.tarjeta__cara--dorso .tarjeta__num { color: rgba(255, 248, 240, .5); margin-bottom: clamp(10px, 1.4vw, 16px); }
+.tarjeta__cara--dorso p { color: rgba(255, 248, 240, .88); }
+[data-tema='noche'] .tarjeta__cara--dorso { color: #150F0B; }
+[data-tema='noche'] .tarjeta__cara--dorso .tarjeta__num { color: rgba(21, 15, 11, .45); }
+[data-tema='noche'] .tarjeta__cara--dorso p { color: rgba(21, 15, 11, .78); }
+
+.rejilla {
+  display: grid;
+  gap: clamp(16px, 2.2vw, 28px);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+}
+
+/* --------------------------------------------------------------------------
+   5. Formularios
+   -------------------------------------------------------------------------- */
+.campo { display: flex; flex-direction: column; gap: 7px; }
+
+.campo__etiqueta {
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--c-tinta-suave);
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+  width: 100%;
+  padding: 13px 16px;
+  background: var(--c-fondo);
+  border: 1px solid var(--c-linea-fuerte);
+  border-radius: var(--r-sm);
+  font-size: var(--t-base);
+  color: var(--c-tinta);
+  transition: border-color var(--dur-rapida) var(--ease), box-shadow var(--dur-rapida) var(--ease);
+  min-height: 48px; /* objetivo táctil cómodo */
+}
+.campo textarea { resize: vertical; min-height: 104px; line-height: 1.55; }
+
+.campo select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5l5-5' fill='none' stroke='%236B6055' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 12px;
+  padding-right: 40px;
+}
+[data-tema='noche'] .campo select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5l5-5' fill='none' stroke='%23B3AA9C' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+  outline: none;
+  border-color: var(--c-acento);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--c-acento) 18%, transparent);
+}
+
+.campo--error input,
+.campo--error select,
+.campo--error textarea { border-color: #C4453B; }
+
+.campo__error {
+  font-size: var(--t-xs);
+  color: #C4453B;
+  font-weight: 600;
+  min-height: 1em;
+}
+[data-tema='noche'] .campo__error { color: #FF8A7A; }
+[data-tema='noche'] .campo--error input,
+[data-tema='noche'] .campo--error select,
+[data-tema='noche'] .campo--error textarea { border-color: #FF8A7A; }
+
+.formulario__rejilla {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
+}
+.campo--ancho { grid-column: 1 / -1; }
+
+/* --------------------------------------------------------------------------
+   6. Chips (filtros de alérgenos, categorías de carta)
+   -------------------------------------------------------------------------- */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .5em;
+  padding: 9px 17px;
+  border: 1px solid var(--c-linea-fuerte);
+  border-radius: var(--r-full);
+  font-size: var(--t-sm);
+  font-weight: 500;
+  color: var(--c-tinta-suave);
+  background: transparent;
+  transition:
+    color var(--dur-rapida) var(--ease),
+    border-color var(--dur-rapida) var(--ease),
+    background-color var(--dur-rapida) var(--ease);
+}
+.chip:hover { color: var(--c-tinta); border-color: var(--c-tinta-suave); }
+.chip[aria-pressed='true'],
+.chip.esta-activo {
+  background: var(--c-acento-fuerte);
+  border-color: var(--c-acento-fuerte);
+  color: #FFF8F0;
+}
+[data-tema='noche'] .chip[aria-pressed='true'],
+[data-tema='noche'] .chip.esta-activo { color: #150F0B; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 9px; }
+
+/* --------------------------------------------------------------------------
+   7. Pie de página
+   -------------------------------------------------------------------------- */
+.pie {
+  background: var(--c-fondo-hondo);
+  border-top: 1px solid var(--c-linea);
+  padding-block: clamp(56px, 7vw, 88px) 30px;
+  position: relative;
+}
+
+.pie__rejilla {
+  display: grid;
+  gap: clamp(30px, 4vw, 56px);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  padding-bottom: clamp(34px, 4vw, 52px);
+  border-bottom: 1px solid var(--c-linea);
+}
+
+.pie__titulo {
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--c-acento-fuerte);
+  margin-bottom: 16px;
+}
+
+.pie__lista { display: flex; flex-direction: column; gap: 9px; color: var(--c-tinta-suave); font-size: var(--t-base); }
+.pie__lista a:hover { color: var(--c-acento); }
+
+.pie__abajo {
+  padding-top: 26px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 26px;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--t-sm);
+  color: var(--c-tinta-tenue);
+}
+
+.pie__firma { display: inline-flex; align-items: center; gap: .45em; }
+.pie__firma a {
+  color: var(--c-tinta-suave);
+  font-weight: 600;
+  border-bottom: 1px solid var(--c-linea-fuerte);
+  padding-bottom: 1px;
+  transition: color var(--dur-rapida) var(--ease), border-color var(--dur-rapida) var(--ease);
+}
+.pie__firma a:hover { color: var(--c-acento); border-color: var(--c-acento); }
+
+/* --------------------------------------------------------------------------
+   8. Adaptación a móvil
+   -------------------------------------------------------------------------- */
+@media (max-width: 960px) {
+  .nav__enlaces, .nav__acciones .idiomas, .nav__acciones .btn { display: none; }
+  .nav__hamburguesa { display: grid; }
+  .menu-movil { display: flex; }
+}
+
+@media (min-width: 961px) {
+  .menu-movil { display: none; }
+}
+
+@media (max-width: 560px) {
+  .btn { --btn-x: 24px; width: 100%; }
+  .btn--auto { width: auto; }
+}

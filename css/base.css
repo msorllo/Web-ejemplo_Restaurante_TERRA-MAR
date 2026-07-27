@@ -1,0 +1,431 @@
+/* ==========================================================================
+   TERRA & MAR BISTRÓ — base.css
+   Sistema de diseño: tokens, tipografía, reset y utilidades.
+   Motor de movimiento Mistereia · paleta e identidad Terra & Mar.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Fuentes (self-hosted, sin CDN — funciona offline y con file://)
+   -------------------------------------------------------------------------- */
+/* Fraunces va subseteada a los caracteres que usa la web y con los ejes SOFT
+   y WONK ya fijados en el valor del diseño: por eso aquí solo se controla
+   'opsz' (tamaño óptico) y el peso. Regenerar con:
+       python herramientas/subsetear-fuentes.py                              */
+@font-face {
+  font-family: 'Fraunces';
+  src: url('../assets/fonts/fraunces-latin.woff2') format('woff2');
+  font-weight: 300 600;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Fraunces';
+  src: url('../assets/fonts/fraunces-latin-ext.woff2') format('woff2');
+  font-weight: 300 600;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* Cursiva real de Fraunces (no la oblicua que sintetizaría el navegador).
+   Se usa a un solo peso, así que el eje wght va fijado en 400. */
+@font-face {
+  font-family: 'Fraunces';
+  src: url('../assets/fonts/fraunces-latin-italica.woff2') format('woff2');
+  font-weight: 300 600;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Fraunces';
+  src: url('../assets/fonts/fraunces-latin-ext-italica.woff2') format('woff2');
+  font-weight: 300 600;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Jakarta';
+  src: url('../assets/fonts/plus-jakarta-sans-latin.woff2') format('woff2');
+  font-weight: 300 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Jakarta';
+  src: url('../assets/fonts/plus-jakarta-sans-latin-ext.woff2') format('woff2');
+  font-weight: 300 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* Fuentes de reserva con las métricas ajustadas a las reales.
+   Sin esto, cuando Fraunces sustituye a la fuente del sistema el titular del
+   hero cambia de alto y empuja el bloque entero: era el único salto de layout
+   que quedaba (CLS 0,087). Los valores salen de medir el avance y las
+   métricas verticales de cada fuente, no a ojo. */
+@font-face {
+  font-family: 'Fraunces reserva';
+  src: local('Georgia'), local('Times New Roman'), local('Liberation Serif');
+  size-adjust: 89%;
+  ascent-override: 109.9%;
+  descent-override: 28.7%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Jakarta reserva';
+  src: local('Segoe UI'), local('Helvetica Neue'), local('Arial'), local('Liberation Sans');
+  size-adjust: 104.5%;
+  ascent-override: 99.3%;
+  descent-override: 21.2%;
+  line-gap-override: 0%;
+}
+
+/* --------------------------------------------------------------------------
+   2. Tokens — MODO DÍA (Bistró)
+   -------------------------------------------------------------------------- */
+:root {
+  /* Color */
+  --c-fondo:        #FAF6EF;   /* crema cálido */
+  --c-fondo-alt:    #F3EDE2;   /* superficie */
+  --c-fondo-hondo:  #EDE4D6;   /* zonas hundidas */
+  --c-tinta:        #2A241E;   /* marrón casi negro */
+  --c-tinta-suave:  #6B6055;
+  --c-tinta-tenue:  #6F6253;   /* 4.7:1 mínimo sobre las tres superficies */
+  --c-acento:       #B5613C;   /* terracota del logo: rellenos y texto grande */
+  /* Variante para texto pequeño y fondos de botón: el terracota de marca se
+     queda en 4.2:1 sobre crema y no llega al AA (4.5:1). Esta sí. */
+  --c-acento-fuerte: #9E4C28;
+  --c-acento-hover: #9C4F2E;
+  --c-oliva:        #3E4B3A;   /* verde de las banquetas */
+  --c-laton:        #C9A24A;   /* dorado del logo */
+  --c-linea:        rgba(42, 36, 30, .14);
+  --c-linea-fuerte: rgba(42, 36, 30, .28);
+
+  /* Superficies glass (glass box de Mistereia) */
+  --glass-fondo:  rgba(255, 253, 249, .72);
+  --glass-borde:  rgba(42, 36, 30, .10);
+  --glass-blur:   blur(16px) saturate(1.25);
+  --sombra-suave: 0 1px 2px rgba(42,36,30,.05), 0 8px 24px -12px rgba(42,36,30,.16);
+  --sombra-alta:  0 2px 6px rgba(42,36,30,.06), 0 28px 60px -24px rgba(42,36,30,.28);
+
+  /* El mar del hero */
+  --mar-1: #C9A24A;
+  --mar-2: #B5613C;
+  --mar-3: #3E4B3A;
+  --mar-fondo: #FAF6EF;
+  --mar-alfa: 1;   /* multiplicador global de opacidad del agua */
+
+  /* Tipografía */
+  --f-display: 'Fraunces', 'Fraunces reserva', Georgia, 'Times New Roman', serif;
+  --f-cuerpo:  'Jakarta', 'Jakarta reserva', ui-sans-serif, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --t-xs:   .75rem;
+  --t-sm:   .8125rem;
+  --t-base: 1rem;
+  --t-md:   clamp(1.02rem, .97rem + .22vw, 1.18rem);
+  --t-lg:   clamp(1.25rem, 1.08rem + .72vw, 1.65rem);
+  --t-xl:   clamp(1.75rem, 1.35rem + 1.7vw, 2.7rem);
+  --t-2xl:  clamp(2.3rem, 1.5rem + 3.3vw, 4.2rem);
+  --t-3xl:  clamp(2.9rem, 1.5rem + 5.9vw, 6.6rem);
+
+  /* Ritmo y forma */
+  --ancho:      1240px;
+  --ancho-texto: 62ch;
+  --r-sm: 6px;
+  --r-md: 12px;
+  --r-lg: 20px;
+  --r-full: 999px;
+  --pad-lateral: clamp(20px, 5vw, 64px);
+  --pad-seccion: clamp(76px, 9vw, 150px);
+
+  /* Movimiento — ADN Mistereia: lento, con easing pronunciado */
+  --ease:      cubic-bezier(.22, 1, .36, 1);
+  --ease-suave: cubic-bezier(.4, 0, .2, 1);
+  --dur-rapida: .28s;
+  --dur-media:  .6s;
+  --dur-lenta:  .9s;
+
+  --nav-alto: 76px;
+  color-scheme: light;
+}
+
+/* --------------------------------------------------------------------------
+   3. Tokens — MODO NOCHE (Bodega & Coctelería)
+   -------------------------------------------------------------------------- */
+[data-tema='noche'] {
+  --c-fondo:        #0F1319;   /* azul noche, nunca negro puro */
+  --c-fondo-alt:    #161C24;
+  --c-fondo-hondo:  #0A0E13;
+  --c-tinta:        #F2EDE4;
+  --c-tinta-suave:  #B3AA9C;
+  --c-tinta-tenue:  #968D7D;   /* 5.2:1 mínimo sobre las tres superficies */
+  --c-acento:       #D9784E;   /* terracota brasa */
+  --c-acento-fuerte: #D9784E;  /* de noche el propio acento ya pasa AA */
+  --c-acento-hover: #E88B60;
+  --c-oliva:        #6E8768;
+  --c-laton:        #E2BE72;   /* el latón manda de noche */
+  --c-linea:        rgba(242, 237, 228, .13);
+  --c-linea-fuerte: rgba(242, 237, 228, .26);
+
+  --glass-fondo:  rgba(22, 28, 36, .66);
+  --glass-borde:  rgba(242, 237, 228, .10);
+  --sombra-suave: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  --sombra-alta:  0 2px 6px rgba(0,0,0,.45), 0 28px 60px -24px rgba(0,0,0,.75);
+
+  --mar-1: #E2BE72;
+  --mar-2: #D9784E;
+  --mar-3: #2C4A63;
+  --mar-fondo: #0F1319;
+  --mar-alfa: .95;
+
+  color-scheme: dark;
+}
+
+/* --------------------------------------------------------------------------
+   4. Reset
+   -------------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-alto) + 16px);
+}
+
+body {
+  font-family: var(--f-cuerpo);
+  font-size: var(--t-md);
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--c-tinta);
+  background: var(--c-fondo);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img, picture, svg, video, canvas { display: block; max-width: 100%; }
+img { height: auto; }
+input, button, textarea, select { font: inherit; color: inherit; }
+button { background: none; border: 0; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; padding: 0; }
+h1, h2, h3, h4 { font-weight: inherit; line-height: 1.1; text-wrap: balance; }
+p { text-wrap: pretty; }
+
+/* --------------------------------------------------------------------------
+   5. Tipografía
+   -------------------------------------------------------------------------- */
+.display {
+  font-family: var(--f-display);
+  font-variation-settings: 'opsz' 96;
+  font-weight: 500;
+  letter-spacing: -.015em;
+  line-height: 1.04;
+}
+
+.t-hero  { font-size: var(--t-3xl); }
+.t-h2    { font-size: var(--t-2xl); }
+.t-h3    { font-size: var(--t-xl); }
+.t-h4    { font-size: var(--t-lg); }
+
+/* Etiqueta de sección — Jakarta en versales muy espaciadas */
+.etiqueta {
+  font-family: var(--f-cuerpo);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--c-acento-fuerte);
+  display: inline-flex;
+  align-items: center;
+  gap: .7em;
+}
+.etiqueta::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: currentColor;
+  opacity: .55;
+}
+
+.parrafo {
+  color: var(--c-tinta-suave);
+  max-width: var(--ancho-texto);
+  font-size: var(--t-md);
+}
+
+.precio {
+  font-family: var(--f-display);
+  font-variation-settings: 'opsz' 40;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--c-acento-fuerte);
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   6. Layout
+   -------------------------------------------------------------------------- */
+.contenedor {
+  width: 100%;
+  max-width: var(--ancho);
+  margin-inline: auto;
+  padding-inline: var(--pad-lateral);
+}
+
+.seccion {
+  padding-block: var(--pad-seccion);
+  position: relative;
+}
+
+/* Secciones lejanas: el navegador se ahorra pintarlas hasta que hacen falta.
+   contain-intrinsic-size evita saltos en la barra de scroll. */
+.seccion--difiere {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
+
+.seccion__cabecera {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 1.6vw, 22px);
+  margin-bottom: clamp(38px, 5vw, 72px);
+  max-width: 760px;
+}
+
+.centrado { text-align: center; margin-inline: auto; align-items: center; }
+
+/* --------------------------------------------------------------------------
+   7. Accesibilidad
+   -------------------------------------------------------------------------- */
+.solo-lector {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.saltar {
+  position: absolute;
+  top: 8px; left: 8px;
+  z-index: 999;
+  padding: 12px 20px;
+  border-radius: var(--r-full);
+  background: var(--c-acento-fuerte);
+  color: #fff;
+  font-weight: 600;
+  transform: translateY(-160%);
+  transition: transform var(--dur-rapida) var(--ease);
+}
+.saltar:focus-visible { transform: translateY(0); }
+
+:focus-visible {
+  outline: 2px solid var(--c-acento);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+::selection { background: var(--c-acento); color: #FFF8F0; }
+
+/* --------------------------------------------------------------------------
+   8. Reveals al hacer scroll (IntersectionObserver añade .visible)
+   -------------------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity var(--dur-lenta) var(--ease),
+    transform var(--dur-lenta) var(--ease);
+  transition-delay: var(--retardo, 0ms);
+  will-change: opacity, transform;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
+/* Stagger declarativo: data-stagger reparte el retardo entre los hijos */
+[data-stagger] > * { --retardo: calc(var(--i, 0) * 80ms); }
+
+/* --------------------------------------------------------------------------
+   9. Cambio de tema
+   Las transiciones de color solo se activan durante el cambio (700 ms) para no
+   pagar su coste en cada repintado ni frenar el scroll.
+   -------------------------------------------------------------------------- */
+.tema-cambiando,
+.tema-cambiando *,
+.tema-cambiando *::before,
+.tema-cambiando *::after {
+  transition:
+    background-color .7s var(--ease),
+    border-color .7s var(--ease),
+    color .7s var(--ease),
+    fill .7s var(--ease),
+    stroke .7s var(--ease) !important;
+}
+
+/* --------------------------------------------------------------------------
+   9b. Cambio de idioma
+   El texto no se puede interpolar como un color: en vez de un crossfade se
+   hace un parpadeo breve (baja opacidad, cambia el texto, sube) para que el
+   cambio se lea como una animación intencionada y no como un salto.
+   -------------------------------------------------------------------------- */
+[data-i18n],
+[data-i18n-html],
+[data-i18n-tema] {
+  transition: opacity .18s var(--ease);
+}
+.idioma-cambiando [data-i18n],
+.idioma-cambiando [data-i18n-html],
+.idioma-cambiando [data-i18n-tema] {
+  opacity: 0;
+}
+
+/* --------------------------------------------------------------------------
+   10. Texturas de fondo — grano y luz mediterránea, sin imágenes
+   -------------------------------------------------------------------------- */
+.grano::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .5;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");
+}
+[data-tema='noche'] .grano::after { mix-blend-mode: screen; opacity: .22; }
+
+/* --------------------------------------------------------------------------
+   11. prefers-reduced-motion — se apaga TODO el movimiento sin romper layout
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}

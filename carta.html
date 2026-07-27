@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="dia">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<title data-i18n="meta.titulo.carta">Carta · Terra &amp; Mar Bistró</title>
+<meta name="description" data-i18n="meta.desc.carta" content="Carta completa de Terra &amp; Mar Bistró: platos, bodega y coctelería, con filtro de alérgenos. Benicarló, Castellón.">
+<meta name="theme-color" content="#FAF6EF">
+<link rel="canonical" href="https://www.terraymarbistro.com/carta.html">
+<link rel="alternate" hreflang="es" href="https://www.terraymarbistro.com/carta.html">
+<link rel="alternate" hreflang="x-default" href="https://www.terraymarbistro.com/carta.html">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+
+<script>
+(function () {
+  var t;
+  try { t = localStorage.getItem('tm_tema'); } catch (e) {}
+  if (t !== 'dia' && t !== 'noche') {
+    var d = new Date(), m = d.getHours() * 60 + d.getMinutes();
+    t = (m >= 19 * 60 + 30 || m < 6 * 60) ? 'noche' : 'dia';
+  }
+  document.documentElement.setAttribute('data-tema', t);
+})();
+</script>
+
+<!-- Los nombres de los platos van en Fraunces: sin precargarla, las 26 líneas
+     de la carta se recomponen al llegar la fuente y la página entera salta. -->
+<link rel="preload" href="assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/componentes.css">
+<link rel="stylesheet" href="css/secciones.css">
+</head>
+
+<body>
+
+<a class="saltar" href="#carta-lista" data-i18n="nav.saltar">Saltar al contenido</a>
+
+<header class="qr-cab">
+  <div class="qr-cab__fila">
+    <a class="qr-cab__marca" href="index.html">
+      <img src="assets/logo.svg" alt="" width="34" height="34" aria-hidden="true">
+      <span class="nav__nombre">Terra &amp; Mar<small>Bistró</small></span>
+    </a>
+
+    <div class="idiomas idiomas--desplegable" role="group" data-i18n-attr="aria-label:nav.idioma">
+      <button type="button" class="idiomas__disparador" aria-haspopup="true" aria-expanded="false">
+        <span class="idiomas__actual"></span>
+        <svg class="idiomas__flecha" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5l5-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      </button>
+      <div class="idiomas__menu">
+        <button type="button" data-idioma="es" aria-pressed="true"><svg class="idiomas__bandera" viewBox="0 0 3 2" aria-hidden="true"><rect width="3" height="2" fill="#AA151B"/><rect width="3" height="1" y=".5" fill="#F1BF00"/></svg>Español</button>
+        <button type="button" data-idioma="en" aria-pressed="false"><svg class="idiomas__bandera" viewBox="0 0 60 30" aria-hidden="true"><rect width="60" height="30" fill="#012169"/><path d="M0 0 60 30M60 0 0 30" stroke="#fff" stroke-width="6"/><path d="M0 0 60 30M60 0 0 30" stroke="#C8102E" stroke-width="4"/><path d="M30 0V30M0 15H60" stroke="#fff" stroke-width="10"/><path d="M30 0V30M0 15H60" stroke="#C8102E" stroke-width="6"/></svg>English</button>
+        <button type="button" data-idioma="fr" aria-pressed="false"><svg class="idiomas__bandera" viewBox="0 0 3 2" aria-hidden="true"><rect width="1" height="2" fill="#0055A4"/><rect width="1" height="2" x="1" fill="#fff"/><rect width="1" height="2" x="2" fill="#EF4135"/></svg>Français</button>
+      </div>
+    </div>
+
+    <button type="button" class="nav__control" data-alternar-tema aria-pressed="false" aria-label="Cambiar a modo noche">
+      <span class="icono-tema" aria-hidden="true">
+        <svg class="icono-tema__sol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+          <circle cx="12" cy="12" r="4.2"/>
+          <path d="M12 2v2.4M12 19.6V22M2 12h2.4M19.6 12H22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/>
+        </svg>
+        <svg class="icono-tema__luna" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20.5 14.4A8.6 8.6 0 1 1 9.6 3.5a6.9 6.9 0 0 0 10.9 10.9Z"/>
+        </svg>
+      </span>
+    </button>
+
+    <a class="btn btn--fantasma btn--pequeno btn--auto" href="panel.html" target="_blank" rel="noopener" data-i18n="nav.panel">Panel</a>
+  </div>
+
+  <label class="solo-lector" for="carta-buscar" data-i18n="carta.buscar">Buscar en la carta</label>
+  <input type="search" class="qr-buscar" id="carta-buscar"
+         data-i18n-attr="placeholder:carta.buscar" placeholder="Buscar en la carta…">
+</header>
+
+<main class="qr-cuerpo">
+
+  <h1 class="display t-h3" style="margin-bottom:18px" data-i18n="carta.etiqueta">La carta</h1>
+
+  <div class="carta__filtros">
+    <div class="chips chips--carril" id="carta-categorias" role="group" data-i18n-attr="aria-label:carta.etiqueta"></div>
+
+    <div class="carta__alergenos-caja" id="carta-alergenos-caja">
+      <button type="button" class="carta__alergenos-titulo" id="carta-alergenos-toggle"
+              aria-expanded="false" aria-controls="carta-alergenos">
+        <span data-i18n="carta.filtrar">Filtrar por alérgeno</span>
+        <svg viewBox="0 0 12 8" aria-hidden="true" width="11" height="8">
+          <path d="M1 1.5 6 6.5l5-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <div class="chips chips--carril" id="carta-alergenos" role="group" data-i18n-attr="aria-label:carta.filtrar.ayuda"></div>
+      <button type="button" class="enlace" id="carta-limpiar" hidden data-i18n="carta.limpiar">Quitar filtros</button>
+    </div>
+
+    <label class="qr-conmutador" style="margin-top:12px">
+      <input type="checkbox" id="carta-fotos">
+      <span class="qr-conmutador__pista" aria-hidden="true"></span>
+      <span data-i18n="carta.verfotos">Ver fotos</span>
+    </label>
+  </div>
+
+  <div id="carta-lista" data-nivel="2" aria-live="polite"></div>
+  <p class="carta__vacio" id="carta-vacio" hidden data-i18n="carta.sinresultados">
+    Ningún plato cumple ese filtro.
+  </p>
+
+  <!-- Bodega y coctelería, misma fuente de datos -->
+  <section class="carta__bloque" style="margin-top:clamp(40px,6vw,70px)">
+    <h2 class="carta__categoria" data-i18n="bodega.cocteles">Cócteles de autor</h2>
+    <div id="bodega-cocteles" data-nivel="3"></div>
+  </section>
+
+  <section class="carta__bloque">
+    <h2 class="carta__categoria" data-i18n="bodega.vinos">Selección de vinos</h2>
+    <div id="bodega-vinos" data-nivel="3"></div>
+  </section>
+
+  <div class="qr-pie">
+    <span data-i18n="carta.nota">Disponemos de carta de alérgenos completa.</span>
+    <span data-i18n="carta.iva">Todos los precios incluyen IVA.</span>
+    <span class="pie__firma" style="justify-content:center">
+      <span data-i18n="footer.creditos">Diseño y desarrollo:</span>
+      <a href="https://mistereia.com" target="_blank" rel="noopener">Mistereia</a>
+    </span>
+  </div>
+
+</main>
+
+<div class="qr-barra">
+  <a class="btn btn--fantasma" href="tel:+34964123456">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M6.6 3h3l1.6 4-2 1.4a12 12 0 0 0 6.4 6.4l1.4-2 4 1.6v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.2 2 2 0 0 1 6.6 3Z"/>
+    </svg>
+    <span data-i18n="carta.llamar">Llamar</span>
+  </a>
+  <a class="btn btn--solido" href="index.html#reservas" data-i18n="nav.reservar">Reservar</a>
+</div>
+
+<script src="js/datos/negocio.js"></script>
+<script src="js/datos/i18n.js"></script>
+<script src="js/datos/carta.js"></script>
+<script src="js/almacen-carta.js"></script>
+<script src="js/idioma.js"></script>
+<script src="js/tema.js"></script>
+<script src="js/carta-ui.js"></script>
+</body>
+</html>

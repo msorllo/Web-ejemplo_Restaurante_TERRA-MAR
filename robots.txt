@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# El panel de gestión es interno: no debe indexarse.
+Disallow: /panel.html
+
+Sitemap: https://www.terraymarbistro.com/sitemap.xml

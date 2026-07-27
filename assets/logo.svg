@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Terra &amp; Mar Bistró">
+  <title>Terra &amp; Mar Bistró</title>
+  <defs>
+    <!-- Hoja de olivo: lente alargada apuntando hacia +x desde el origen -->
+    <path id="tm-hoja" d="M0 0C5-6 15-7 21-3 15 3 5 5 0 0Z"/>
+  </defs>
+
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+    <circle cx="100" cy="100" r="92" stroke="#B5613C" stroke-width="2.4"/>
+
+    <!-- Marejada exterior: arco dorado que envuelve la ola -->
+    <path d="M49 120A54 54 0 0 1 147 75" stroke="#C9A24A" stroke-width="2.3"/>
+
+    <!-- Ola que rompe: cresta por la izquierda y espiral abierta a la derecha -->
+    <path d="M51 115C51 87 69 72 90 74c20 3 36 13 38 26 3 15-10 23-19 17-8-5-5-16 4-14"
+          stroke="#B5613C" stroke-width="2.8"/>
+
+    <!-- Olas anidadas rodando bajo la cresta -->
+    <path d="M54 126c10-15 28-20 43-12 11 5 20 10 32 6" stroke="#B5613C" stroke-width="2.2"/>
+    <path d="M58 138c11-15 30-20 45-12 11 5 21 10 34 4" stroke="#C9A24A" stroke-width="2"/>
+
+    <!-- Seno inferior de la masa de agua -->
+    <path d="M50 122c0 24 22 39 52 39 24 0 41-9 50-23" stroke="#C9A24A" stroke-width="2.1"/>
+
+    <!-- Rama de olivo -->
+    <g stroke="#C9A24A" stroke-width="1.9">
+      <path d="M133 82c11 14 20 32 26 52"/>
+      <path d="M147 139c-8-1-13 5-9 10 5 4 12 1 11-5" stroke-width="1.7"/>
+    </g>
+    <g fill="#C9A24A">
+      <use href="#tm-hoja" transform="translate(137 88) rotate(-62)"/>
+      <use href="#tm-hoja" transform="translate(140 98) rotate(108)"/>
+      <use href="#tm-hoja" transform="translate(146 109) rotate(-56)"/>
+      <use href="#tm-hoja" transform="translate(150 120) rotate(112)"/>
+      <use href="#tm-hoja" transform="translate(155 131) rotate(-50)"/>
+    </g>
+
+  </g>
+</svg>

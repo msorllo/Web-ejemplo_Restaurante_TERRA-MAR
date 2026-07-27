@@ -1,0 +1,30 @@
+# Cabeceras de caché para hosting que las respeta por convención (Netlify,
+# Cloudflare Pages...). En otros hostings, configura el equivalente a mano.
+#
+# Las fotos de assets/platos/ se quedan con poco cache a propósito: el flujo
+# de FOTOS.md es sustituir el fichero con el mismo nombre, y con un cache
+# largo esa foto nueva tardaría días en verse para quien ya visitó la web.
+
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/css/*
+  Cache-Control: public, max-age=86400
+
+/js/*
+  Cache-Control: public, max-age=86400
+
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/img/*
+  Cache-Control: public, max-age=604800
+
+/assets/platos/*
+  Cache-Control: public, max-age=3600
+
+/sitemap.xml
+  Cache-Control: public, max-age=3600
+
+/robots.txt
+  Cache-Control: public, max-age=3600

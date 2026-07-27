@@ -1,0 +1,23 @@
+{
+  "name": "Terra & Mar Bistró",
+  "short_name": "Terra & Mar",
+  "description": "Cocina de raíz y elegancia mediterránea en Benicarló.",
+  "lang": "es",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#FAF6EF",
+  "theme_color": "#FAF6EF",
+  "icons": [
+    {
+      "src": "assets/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    { "name": "Ver la carta", "url": "/carta.html" },
+    { "name": "Reservar mesa", "url": "/#reservas" }
+  ]
+}

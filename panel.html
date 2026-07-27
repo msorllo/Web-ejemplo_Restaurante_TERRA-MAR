@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panel de reservas · Terra &amp; Mar Bistró</title>
+  <meta name="description" content="Panel interno de gestión de reservas de Terra &amp; Mar Bistró.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0C1016">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/panel.css">
+</head>
+
+<body>
+
+  <div class="app">
+
+    <!-- ==================================================================== -->
+    <aside class="lateral">
+
+      <a class="lateral__marca" href="index.html">
+        <img src="assets/logo.svg" alt="" width="38" height="38">
+        <span class="lateral__nombre">Terra &amp; Mar<small>Panel</small></span>
+      </a>
+
+      <nav class="lateral__nav" aria-label="Secciones del panel">
+        <button type="button" class="lateral__enlace esta-activo" data-vista="reservas" aria-current="page">
+          <svg viewBox="0 0 24 24">
+            <rect x="3.5" y="5" width="17" height="15" rx="2.5" />
+            <path d="M3.5 9.5h17M8 3v4M16 3v4" />
+          </svg>
+          Reservas
+          <span class="lateral__contador" id="cont-reservas">0</span>
+        </button>
+        <button type="button" class="lateral__enlace" data-vista="eventos">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 3.5 14.6 9l6 .9-4.3 4.2 1 6-5.3-2.8L6.7 20l1-6L3.4 9.9l6-.9Z" />
+          </svg>
+          Eventos
+          <span class="lateral__contador" id="cont-eventos">0</span>
+        </button>
+        <button type="button" class="lateral__enlace" data-vista="carta">
+          <svg viewBox="0 0 24 24">
+            <path d="M4 19.5V17l10-10 2.5 2.5-10 10H4Z" />
+            <path d="M13 6.5 16.5 3 19 5.5 15.5 9" />
+          </svg>
+          Carta
+        </button>
+        <button type="button" class="lateral__enlace" data-vista="guia">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 3a6.5 6.5 0 0 0-3.8 11.8c.5.4.8 1 .8 1.7v.5h6v-.5c0-.7.3-1.3.8-1.7A6.5 6.5 0 0 0 12 3Z" />
+            <path d="M9.7 19.5h4.6M10.3 22h3.4" />
+          </svg>
+          Cómo funciona
+        </button>
+        <span class="lateral__separador" aria-hidden="true"></span>
+        <a class="lateral__enlace" href="index.html" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M14 4h6v6M20 4l-9 9M18 14v5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 19V8a1.5 1.5 0 0 1 1.5-1.5H10" />
+          </svg>
+          Ver la web
+        </a>
+        <a class="lateral__enlace" href="carta.html" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24">
+            <path d="M6 3.5h12v17l-6-3-6 3z" />
+            <path d="M9 8h6M9 11.5h4" />
+          </svg>
+          Carta QR
+        </a>
+      </nav>
+
+      <p class="lateral__pie">
+        Demo sin servidor: las reservas viven en este navegador.<br>
+        Con backend real serían visibles desde cualquier dispositivo.
+      </p>
+
+    </aside>
+
+    <!-- ==================================================================== -->
+    <main class="principal">
+
+      <div class="cabecera">
+        <div>
+          <h1 class="display" id="titulo-vista">Reservas</h1>
+          <p id="subtitulo-vista">Cargando…</p>
+        </div>
+        <div class="acciones">
+          <button type="button" class="bton" id="btn-ejemplo">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+            Cargar datos de ejemplo
+          </button>
+          <button type="button" class="bton bton--peligro" id="btn-vaciar">
+            <svg viewBox="0 0 24 24">
+              <path d="M4.5 7h15M9.5 7V4.5h5V7M6.5 7l1 12.5h9L17.5 7" />
+            </svg>
+            Vaciar
+          </button>
+        </div>
+      </div>
+
+      <div id="vista-datos">
+
+        <div class="kpis" id="kpis"></div>
+
+        <div class="filtros" id="filtros" role="group" aria-label="Filtrar reservas">
+          <button type="button" class="filtro" data-cuando="hoy" aria-pressed="true">Hoy</button>
+          <button type="button" class="filtro" data-cuando="manana" aria-pressed="false">Mañana</button>
+          <button type="button" class="filtro" data-cuando="semana" aria-pressed="false">7 días</button>
+          <button type="button" class="filtro" data-cuando="todas" aria-pressed="false">Todas</button>
+          <span class="filtros__sep" aria-hidden="true"></span>
+          <button type="button" class="filtro" data-estado="" aria-pressed="true">Cualquier estado</button>
+          <button type="button" class="filtro" data-estado="pendiente" aria-pressed="false">Pendientes</button>
+          <button type="button" class="filtro" data-estado="confirmada" aria-pressed="false">Confirmadas</button>
+        </div>
+
+        <div class="tabla-caja">
+          <div class="tabla-desliza">
+            <table id="tabla">
+              <caption class="solo-lector">Listado de reservas recibidas</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Cuándo</th>
+                  <th scope="col">Cliente</th>
+                  <th scope="col">Contacto</th>
+                  <th scope="col">Pax</th>
+                  <th scope="col">Notas</th>
+                  <th scope="col">Estado</th>
+                  <th scope="col"><span class="solo-lector">Acciones</span></th>
+                </tr>
+              </thead>
+              <tbody id="cuerpo"></tbody>
+            </table>
+          </div>
+          <div class="vacio" id="vacio" hidden>
+            <svg class="vacio__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+              <rect x="3.5" y="5" width="17" height="15" rx="2.5" />
+              <path d="M3.5 9.5h17M8 3v4M16 3v4M9 14h6" />
+            </svg>
+            <h2 class="display">Aún no hay nada aquí</h2>
+            <p id="vacio-texto">Haz una reserva desde la web y aparecerá en esta tabla al instante, sin recargar.</p>
+            <button type="button" class="bton bton--principal" id="btn-ejemplo-2">Cargar datos de ejemplo</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================================================================== -->
+      <!-- CARTA: añadir, editar y borrar platos, con efecto al instante      -->
+      <!-- ================================================================== -->
+      <section id="vista-carta" class="gestor-carta" hidden>
+
+        <p class="gestor-carta__intro">
+          Esto es lo que verías si gestionases tu carta tú mismo, sin llamar a nadie ni tocar una línea
+          de código. Añade un plato, cambia un precio o retira uno — y compruébalo en
+          <a href="index.html" target="_blank" rel="noopener">la web</a> o en
+          <a href="carta.html" target="_blank" rel="noopener">la carta QR</a>: el cambio ya está ahí.
+        </p>
+
+        <div class="gestor-carta__acciones">
+          <button type="button" class="bton" id="btn-restaurar-carta">
+            <svg viewBox="0 0 24 24"><path d="M4.5 12a7.5 7.5 0 1 1 2.4 5.5M4.5 12V6.5M4.5 12h5.5" /></svg>
+            Restaurar carta original
+          </button>
+          <button type="button" class="bton bton--principal" id="btn-anadir-plato">
+            <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></svg>
+            Añadir plato
+          </button>
+        </div>
+
+        <div id="lista-carta-panel" class="gestor-carta__lista"></div>
+
+      </section>
+
+      <!-- ================================================================== -->
+      <!-- GUÍA: qué es esta demo, qué se puede probar y cómo se adapta       -->
+      <!-- ================================================================== -->
+      <section id="vista-guia" class="guia" hidden>
+
+        <p class="guia__intro">
+          Esta demo son <strong>tres piezas conectadas</strong>, pensadas para que veas —con tu propio
+          negocio en la cabeza— qué recibirías de verdad si trabajas con Mistereia. Nada de lo que
+          pruebas aquí es una maqueta aparte: es lo que te llevarías, con tus platos, tu
+          marca y tus datos.
+        </p>
+
+        <div class="guia__piezas">
+          <article class="guia__pieza">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M14 4h6v6M20 4l-9 9M18 14v5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 19V8a1.5 1.5 0 0 1 1.5-1.5H10" />
+            </svg>
+            <h3>La web</h3>
+            <p>Lo primero que ve alguien buscando dónde comer: presentación, carta completa, ubicación y el botón de
+              reservar.</p>
+            <a class="guia__enlace" href="index.html" target="_blank" rel="noopener">Verla ahora →</a>
+          </article>
+          <article class="guia__pieza">
+            <svg viewBox="0 0 24 24">
+              <path d="M6 3.5h12v17l-6-3-6 3z" />
+              <path d="M9 8h6M9 11.5h4" />
+            </svg>
+            <h3>La carta QR</h3>
+            <p>Lo que ve el cliente ya sentado en la mesa al escanear el código: la misma carta, ligera y sin
+              distracciones.</p>
+            <a class="guia__enlace" href="carta.html" target="_blank" rel="noopener">Verla ahora →</a>
+          </article>
+          <article class="guia__pieza">
+            <svg viewBox="0 0 24 24">
+              <rect x="3.5" y="5" width="17" height="15" rx="2.5" />
+              <path d="M3.5 9.5h17M8 3v4M16 3v4" />
+            </svg>
+            <h3>Este panel</h3>
+            <p>Lo que usa el restaurante cada día: reservas, ocupación estimada e ingreso estimado, en tiempo real.</p>
+          </article>
+        </div>
+
+        <p class="guia__nota">
+          Las tres comparten los mismos datos: cambia un precio o un plato una vez y se actualiza a la
+          vez en la web, en la carta QR y en el ticket medio de este panel.
+        </p>
+
+        <div class="guia__bloque">
+          <h2 class="display">Lo que esto significa para tu día a día</h2>
+          <p>Nada de jerga técnica: esto es lo que cambiaría de verdad si esto fuera tuyo.</p>
+          <ul class="guia__check">
+            <li>Subes un precio el mismo día que sube el pescado en la lonja — no la semana que tu diseñador tenga un
+              hueco libre.</li>
+            <li>Un plato nuevo se publica en un minuto, con foto o sin ella, y aparece en la web y en la mesa a la
+              vez.</li>
+            <li>Dejas de depender de nadie para el día a día: la web la construye Mistereia, pero el contenido —
+              carta, precios, fotos— lo llevas tú, cuando quieras.</li>
+            <li>Ves las reservas según van entrando, sin la típica libreta de la barra ni llamadas cruzadas para
+              confirmar una mesa.</li>
+            <li>Sabes cuánta gente vas a tener y cuánto vas a facturar hoy, no lo intuyes.</li>
+          </ul>
+        </div>
+
+        <div class="guia__bloque">
+          <h2 class="display">Qué puedes probar ahora mismo</h2>
+          <ul class="guia__lista">
+            <li><strong>Cambiar la carta tú mismo.</strong> Ve a la pestaña «Carta», en el menú de la izquierda: añade
+              un plato, cambia un precio o retira uno. Se ve al instante en la web y en la carta QR — sin llamar a
+              nadie, sin tocar una línea de código.</li>
+            <li><strong>Modo día / noche.</strong> El sol/luna de la web cambia colores, la foto del hero y hasta qué
+              sección se enciende: bistró de día, coctelería de noche.</li>
+            <li><strong>Reserva en vivo.</strong> Rellena el formulario de la web (o pulsa «Cargar datos de ejemplo» en
+              Reservas) y mira cómo entra en esta tabla al instante, sin recargar — funciona igual con el panel abierto
+              en otra pestaña o en otro dispositivo.</li>
+            <li><strong>Carta con foto flotante.</strong> En escritorio, pasa el ratón sobre un plato; en el móvil,
+              tócalo.</li>
+            <li><strong>3 idiomas.</strong> Español, inglés y francés con un clic, sin recargar la página.</li>
+            <li><strong>Alérgenos y buscador</strong> en la carta QR, para resolver la pregunta antes de que la hagan.
+            </li>
+            <li><strong>KPIs reales.</strong> Ocupación e ingreso estimado calculados sobre un aforo y un ticket medio
+              de verdad, no cifras de relleno.</li>
+          </ul>
+        </div>
+
+        <div class="guia__bloque">
+          <h2 class="display">Cómo se adaptaría a tu negocio</h2>
+          <p>Nada de lo que ves es fijo. Esto es lo que se personaliza para cada cliente:</p>
+          <ul class="guia__check">
+            <li>Tu marca: colores, tipografía, logo, y el concepto del modo día/noche (o el que tenga sentido para tu
+              negocio: temporada, mediodía/noche, entre semana/fin de semana…).</li>
+            <li>Tu carta real: platos, precios, alérgenos y fotos — la tuya, no una genérica.</li>
+            <li>Tus idiomas: los que necesites, no solo tres.</li>
+            <li>Tus secciones: eventos y privados, tarjeta regalo, chef y equipo, galería… se añaden o se quitan según
+              lo que tenga tu negocio.</li>
+            <li>Reservas de verdad: de vivir en este navegador a conectarse a un backend real, visibles desde cualquier
+              dispositivo, con WhatsApp Business o tu sistema de reservas actual.</li>
+            <li>Tu equipo: varios usuarios con permisos por rol, y el panel accesible desde el móvil en cocina o en
+              barra.</li>
+            <li>Tu dominio: publicado donde tú decidas, no en un subdominio ajeno.</li>
+          </ul>
+        </div>
+
+      </section>
+
+      <!-- Cierre comercial: esto es una demo de Mistereia -->
+      <section class="cierre">
+        <div>
+          <h2 class="display">¿Quieres esto para tu restaurante?</h2>
+          <p>
+            Web, carta digital con QR y panel de reservas como este, con tu marca y tus platos.
+            Lo montamos en Mistereia y lo dejamos funcionando.
+          </p>
+        </div>
+        <a class="bton bton--principal" href="https://mistereia.com" target="_blank" rel="noopener">
+          Hablar con Mistereia
+          <svg viewBox="0 0 24 24">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </a>
+      </section>
+
+    </main>
+  </div>
+
+  <div class="avisos" id="avisos" role="status" aria-live="polite"></div>
+
+  <!-- ==================================================================== -->
+  <!-- MODAL: añadir / editar plato                                        -->
+  <!-- ==================================================================== -->
+  <div class="modal" id="modal-plato" hidden>
+    <div class="modal__velo" id="modal-velo"></div>
+    <div class="modal__caja" role="dialog" aria-modal="true" aria-labelledby="modal-plato-titulo">
+      <button type="button" class="modal__cerrar" id="modal-cerrar" aria-label="Cerrar">
+        <svg viewBox="0 0 24 24"><path d="M5 5l14 14M19 5 5 19" /></svg>
+      </button>
+      <h2 class="display" id="modal-plato-titulo">Añadir plato</h2>
+
+      <form id="form-plato">
+        <label class="campo">
+          <span>Nombre del plato</span>
+          <input type="text" id="fp-nombre" required maxlength="80" placeholder="Ej. Arroz meloso de bogavante">
+        </label>
+
+        <div class="campo campo-foto">
+          <span>Foto del plato</span>
+          <div class="campo-foto__fila">
+            <div class="campo-foto__vista" id="fp-foto-vista" hidden>
+              <img id="fp-foto-img" alt="">
+              <button type="button" class="campo-foto__quitar" id="fp-foto-quitar" aria-label="Quitar foto">
+                <svg viewBox="0 0 24 24"><path d="M5 5l14 14M19 5 5 19" /></svg>
+              </button>
+            </div>
+            <label class="campo-foto__subir" id="fp-foto-etiqueta">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 17.5V19a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1.5" />
+                <path d="M12 15V4M12 4 7.5 8.5M12 4l4.5 4.5" />
+              </svg>
+              <span>Subir foto</span>
+              <input type="file" accept="image/*" id="fp-foto-input" class="solo-lector">
+            </label>
+          </div>
+          <p class="campo-foto__nota">Se recorta a 4:3 y se ajusta de tamaño sola. Si no subes ninguna, el plato
+            enseña un marcador con su inicial hasta que la subas.</p>
+        </div>
+
+        <div class="campo-fila">
+          <label class="campo">
+            <span>Categoría</span>
+            <select id="fp-categoria"></select>
+          </label>
+          <label class="campo campo--precio">
+            <span>Precio (€)</span>
+            <input type="number" id="fp-precio" required min="0" step="0.10" placeholder="18.50">
+          </label>
+        </div>
+
+        <label class="campo">
+          <span>Descripción</span>
+          <textarea id="fp-desc" rows="3" maxlength="220"
+            placeholder="Cómo se sirve, con qué, algún detalle que lo venda"></textarea>
+        </label>
+
+        <fieldset class="campo-alergenos">
+          <legend>Alérgenos que lleva</legend>
+          <div class="chips-check" id="fp-alergenos"></div>
+        </fieldset>
+
+        <p class="modal__nota">
+          Se guarda en este navegador. El inglés y el francés de la web muestran este mismo texto en
+          español hasta que alguien lo traduzca — así puedes publicar un plato nuevo en el momento, sin
+          esperar a nadie.
+        </p>
+
+        <div class="modal__pie">
+          <button type="button" class="bton bton--peligro" id="fp-borrar" hidden>Borrar plato</button>
+          <span class="modal__espacio"></span>
+          <button type="button" class="bton" id="fp-cancelar">Cancelar</button>
+          <button type="submit" class="bton bton--principal">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/datos/negocio.js"></script>
+  <script src="js/datos/carta.js"></script>
+  <script src="js/almacen.js"></script>
+  <script src="js/almacen-carta.js"></script>
+  <script src="js/panel.js"></script>
+  <script src="js/panel-carta.js"></script>
+</body>
+
+</html>

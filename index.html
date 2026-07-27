@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="dia">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <title data-i18n="meta.titulo">Terra &amp; Mar Bistró · Restaurante mediterráneo en Benicarló</title>
+  <meta name="description"
+    content="Cocina de raíz y elegancia mediterránea en el Paseo Marítimo de Benicarló. Producto de la lonja y del Maestrat, bodega y coctelería de autor. Reserva tu mesa.">
+  <meta name="theme-color" content="#FAF6EF">
+  <meta name="author" content="Terra &amp; Mar Bistró">
+
+  <link rel="canonical" href="https://www.terraymarbistro.com/">
+  <link rel="alternate" hreflang="es" href="https://www.terraymarbistro.com/">
+  <link rel="alternate" hreflang="en" href="https://www.terraymarbistro.com/?lang=en">
+  <link rel="alternate" hreflang="fr" href="https://www.terraymarbistro.com/?lang=fr">
+  <link rel="alternate" hreflang="x-default" href="https://www.terraymarbistro.com/">
+
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/logo.svg">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="restaurant.restaurant">
+  <meta property="og:site_name" content="Terra &amp; Mar Bistró">
+  <meta property="og:title" content="Terra &amp; Mar Bistró · Restaurante mediterráneo en Benicarló">
+  <meta property="og:description"
+    content="Cocina de raíz y elegancia mediterránea en el Paseo Marítimo de Benicarló. Reserva tu mesa.">
+  <meta property="og:url" content="https://www.terraymarbistro.com/">
+  <meta property="og:image" content="https://www.terraymarbistro.com/assets/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="es_ES">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Terra &amp; Mar Bistró · Benicarló">
+  <meta name="twitter:description"
+    content="Cocina de raíz y elegancia mediterránea, a treinta metros del Mediterráneo.">
+  <meta name="twitter:image" content="https://www.terraymarbistro.com/assets/img/og.jpg">
+
+  <!-- El tema se fija antes del primer pintado para que no haya parpadeo -->
+  <script>
+    (function () {
+      var t;
+      try { t = localStorage.getItem('tm_tema'); } catch (e) { }
+      if (t !== 'dia' && t !== 'noche') {
+        var d = new Date(), m = d.getHours() * 60 + d.getMinutes();
+        t = (m >= 19 * 60 + 30 || m < 6 * 60) ? 'noche' : 'dia';
+      }
+      document.documentElement.setAttribute('data-tema', t);
+      document.documentElement.style.setProperty(
+        '--barra-scroll', (window.innerWidth - document.documentElement.clientWidth) + 'px');
+    })();
+  </script>
+
+  <!-- Datos estructurados. Generados con: node herramientas/generar-jsonld.js -->
+  <!-- JSONLD:INICIO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "@id": "https://www.terraymarbistro.com/#restaurante",
+  "name": "Terra & Mar Bistró",
+  "description": "Cocina de raíz y elegancia mediterránea en el Paseo Marítimo de Benicarló. Producto de la lonja y de la huerta del Maestrat.",
+  "slogan": "Cocina de raíz & elegancia mediterránea",
+  "url": "https://www.terraymarbistro.com/",
+  "telephone": "+34 964 123 456",
+  "email": "reservas@terraymarbistro.com",
+  "image": [
+    "https://www.terraymarbistro.com/assets/img/og.jpg",
+    "https://www.terraymarbistro.com/assets/img/fachada-1600.jpg"
+  ],
+  "logo": "https://www.terraymarbistro.com/assets/logo.svg",
+  "priceRange": "€€€",
+  "currenciesAccepted": "EUR",
+  "paymentAccepted": "Efectivo, tarjeta de crédito y débito",
+  "servesCuisine": [
+    "Mediterránea",
+    "Española",
+    "Cocina de mercado"
+  ],
+  "acceptsReservations": "https://www.terraymarbistro.com/#reservas",
+  "maximumAttendeeCapacity": 30,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Paseo Marítimo, 45",
+    "postalCode": "12580",
+    "addressLocality": "Benicarló",
+    "addressRegion": "Castellón",
+    "addressCountry": "ES"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.4155,
+    "longitude": 0.431
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "opens": "13:30",
+      "closes": "16:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "opens": "20:30",
+      "closes": "23:30"
+    }
+  ],
+  "hasMenu": {
+    "@type": "Menu",
+    "@id": "https://www.terraymarbistro.com/carta.html",
+    "name": "Carta Terra & Mar Bistró",
+    "inLanguage": [
+      "es",
+      "en",
+      "fr"
+    ],
+    "hasMenuSection": [
+      {
+        "@type": "MenuSection",
+        "name": "Para abrir boca",
+        "hasMenuItem": [
+          {
+            "@type": "MenuItem",
+            "name": "Croquetas melosas de rabo de toro",
+            "description": "Acompañadas de una ligera emulsión de trufa negra. (6 uds.)",
+            "image": "https://www.terraymarbistro.com/assets/platos/croquetas-rabo-toro.webp",
+            "offers": {
+              "@type": "Offer",
+              "price": "12.50",
+              "priceCurrency": "EUR"
+            }
+          },
+          {
+            "@type": "MenuItem",
+            "name": "Tartar de salmón noruego",
+            "description": "Con aguacate en su punto, alcaparras y una vinagreta suave de cítricos, con tostas de masa madre.",
+            "image": "https://www.terraymarbistro.com/assets/platos/tartar-salmon.webp",
+            "offers": {
+              "@type": "Offer",
+              "price": "16.00",
+              "priceCurrency": "EUR"
+            }
+          },
+          {
+            "@type": "MenuItem",
+            "name": "Carpaccio de ternera Angus",
+            "description": "Finas láminas acompañadas de lascas de queso parmesano, rúcula y AOVE ecológico.",
+            "image": "https://www.terraymarbistro.com/assets/platos/carpaccio-angus.webp",
+            "offers": {
+              "@type": "Offer",
+              "price": "15.50",
+              "priceCurrency": "EUR"
+            }
+          },
+          {
+            "@type": "MenuItem",
+            "name": "Zamburiñas al horno",
+            "description": "Gratinadas con un suave majado de ajo, perejil y un toque de vino blanco.",
+            "image": "https://www.terraymarbistro.com/assets/platos/zamburinas-horno.webp",
+            "offers": {
+              "@type": "Offer",
+              "price": "14.00",
+              "priceCurrency": "EUR"
+            }
+          },
+          {
+            "@type": "MenuItem",
+            "name": "Ensalada de burrata trufada",
+            "description": "Sobre cama de tomates cherry confitados, rúcula fresca y aceite de albahaca.",
+            "image": "https://www.terraymarbistro.com/assets/platos/burrata-trufada.webp",
+            "offers": {
+              "@type": "Offer",
+              "price": "13.50",
+              "priceCurrency": "EUR"
+            }
+          },
+          {
+            "@type": "MenuItem",
+            "name": "Pulpo a la brasa",
+            "description": "Servido sobre parmentier de patata ahumada y un toque de pimentón de la Vera.",
+            "image": "https://www.terraymarbistro.com/assets/platos/pulpo-brasa.webp",
+            "offers": {
+              "@type": "Offer",
+              "price": "19.50",
+              "priceCurrency": "EUR"
+            }
+          }
+        ]
+      },
+      {
+        "@type": "MenuSection",
+        "name": "Del mar",
+        "hasMenuItem": [
+          {
+            "@type": "MenuItem",
+            "name": "Lomo de bacalao confitado",
+            "description": "A baja temperatura, servido sobre un pisto tradicional y coronado con crujiente de puerro.",
+            "image": "https://www.terraymarbistro.com/assets/platos/bacalao-confitado.webp",
+            "offers": {
+              "@type": "Offer",
+              "price": "21.00",
+              "priceCurrency": "EUR"
+            }
+          },
+          {
+            "@type": "MenuItem",
+            "name": "Corvina a la plancha",
+            "description": "Con costra de hierbas provenzales, acompañada de espárragos trigueros y salsa holandesa.",
+            "image": "https://www.terraymarbistro.com/assets/platos/corvina-plancha.webp",
+            "offers": {
+              "@type": "Offer",
+              "price": "22.50",
+              "priceCurrency": "EUR"
+            }
+          },
+          {
+            "@type": "MenuItem",
+            "name": "Tataki de atún rojo",
+            "description": "Sellado a la plancha con sésamo, acompañado de mayonesa de wasabi y ensalada wakame.",
+            "image": "https://www.terraymarbistro.com/assets/platos/tataki-atun.webp",
+            "offers": {
+              "@type": "Offer",
+              "price": "24.00",
+              "priceCurrency": "EUR"
+            }
+          }
+        ]
+      },
+      {
+        "@type": "MenuSection",
+        "name": "De la tierra",
+        "hasMenuItem": [
+          {
+            "@type": "MenuItem",
+            "name": "Pluma ibérica a la parrilla",
+            "description": "Jugosa carne de cerdo ibérico con puré de boniato asado y reducción de Pedro Ximénez.",
+            "image": "https://www.terraymarbistro.com/assets/platos/pluma-iberica.webp",
+            "offers": {
+              "@type": "Offer",
+              "price": "20.50",
+              "priceCurrency": "EUR"
+            }
+          },
+          {
+            "@type": "MenuItem",
+            "name": "Entrecot de vaca madurada (300 g)",
+            "description": "Trinchado y servido con patatas rústicas al romero y pimientos del Padrón.",
+            "image": "https://www.terraymarbistro.com/assets/platos/entrecot-madurado.webp",
+            "offers": {
+              "@type": "Offer",
+              "price": "26.00",
+              "priceCurrency": "EUR"
+            }
+          },
+          {
+            "@type": "MenuItem",
+            "name": "Magret de pato",
+            "description": "Fileteado sobre una compota de manzana especiada y salsa de frutos rojos.",
+            "image": "https://www.terraymarbistro.com/assets/platos/magret-pato.webp",
+            "offers": {
+              "@type": "Offer",
+              "price": "23.00",
+              "priceCurrency": "EUR"
+            }
+          }
+        ]
+      },
+      {
+        "@type": "MenuSection",
+        "name": "Pastas y arroces",
+        "hasMenuItem": [
+          {
+            "@type": "MenuItem",
+            "name": "Risotto de setas silvestres",
+            "description": "Arroz cremoso con variedad de setas de temporada, mantequilla y crujiente de parmesano.",
+            "image": "https://www.terraymarbistro.com/assets/platos/risotto-setas.webp",
+            "offers": {
+              "@type": "Offer",
+              "price": "16.50",
+              "priceCurrency": "EUR"
+            }
+          },
+          {
+            "@type": "MenuItem",
+            "name": "Lasaña abierta de pato",
+            "description": "Capas de pasta fresca intercaladas con ragú de pato confitado y bechamel ligera.",
+            "image": "https://www.terraymarbistro.com/assets/platos/lasana-pato.webp",
+            "offers": {
+              "@type": "Offer",
+              "price": "18.00",
+              "priceCurrency": "EUR"
+            }
+          }
+        ]
+      },
+      {
+        "@type": "MenuSection",
+        "name": "Postres artesanales",
+        "hasMenuItem": [
+          {
+            "@type": "MenuItem",
+            "name": "Tarta de queso tradicional",
+            "description": "Horneada, con un centro muy cremoso y base de galleta artesanal.",
+            "image": "https://www.terraymarbistro.com/assets/platos/tarta-queso.webp",
+            "offers": {
+              "@type": "Offer",
+              "price": "7.50",
+              "priceCurrency": "EUR"
+            }
+          },
+          {
+            "@type": "MenuItem",
+            "name": "Volcán de chocolate negro",
+            "description": "Bizcocho fluido por dentro, contrastado con una bola de helado de vainilla Bourbon.",
+            "image": "https://www.terraymarbistro.com/assets/platos/volcan-chocolate.webp",
+            "offers": {
+              "@type": "Offer",
+              "price": "8.00",
+              "priceCurrency": "EUR"
+            }
+          },
+          {
+            "@type": "MenuItem",
+            "name": "Torrija de pan brioche",
+            "description": "Caramelizada a la plancha, servida tibia con helado de turrón de Jijona.",
+            "image": "https://www.terraymarbistro.com/assets/platos/torrija-brioche.webp",
+            "offers": {
+              "@type": "Offer",
+              "price": "7.50",
+              "priceCurrency": "EUR"
+            }
+          }
+        ]
+      },
+      {
+        "@type": "MenuSection",
+        "name": "Cócteles de autor",
+        "hasMenuItem": [
+          {
+            "@type": "MenuItem",
+            "name": "Brisa de Benicarló",
+            "description": "Ginebra premium, limoncello artesanal, hojas de albahaca fresca y tónica neutra. Muy refrescante.",
+            "offers": {
+              "@type": "Offer",
+              "price": "10.00",
+              "priceCurrency": "EUR"
+            }
+          },
+          {
+            "@type": "MenuItem",
+            "name": "Ocaso en el Mediterráneo",
+            "description": "Aperol, zumo natural de pomelo rosa, cava brut nature y una ramita de romero quemado.",
+            "offers": {
+              "@type": "Offer",
+              "price": "9.50",
+              "priceCurrency": "EUR"
+            }
+          },
+          {
+            "@type": "MenuItem",
+            "name": "Terra & Mar Espresso",
+            "description": "Vodka, licor de café de especialidad, un shot de espresso intenso y sirope de vainilla.",
+            "offers": {
+              "@type": "Offer",
+              "price": "11.00",
+              "priceCurrency": "EUR"
+            }
+          },
+          {
+            "@type": "MenuItem",
+            "name": "El Roble Ahumado",
+            "description": "Whisky Bourbon, sirope de arce, bitter de naranja y un toque de humo de madera de roble servido en campana.",
+            "offers": {
+              "@type": "Offer",
+              "price": "12.50",
+              "priceCurrency": "EUR"
+            }
+          }
+        ]
+      },
+      {
+        "@type": "MenuSection",
+        "name": "Selección de vinos (copa)",
+        "hasMenuItem": [
+          {
+            "@type": "MenuItem",
+            "name": "D.O. Rueda · Verdejo",
+            "description": "Fresco, afrutado y con una excelente acidez que acompaña perfectamente los pescados.",
+            "offers": {
+              "@type": "Offer",
+              "price": "4.50",
+              "priceCurrency": "EUR"
+            }
+          },
+          {
+            "@type": "MenuItem",
+            "name": "D.O. Rías Baixas · Albariño",
+            "description": "Elegante, floral y con notas salinas.",
+            "offers": {
+              "@type": "Offer",
+              "price": "5.00",
+              "priceCurrency": "EUR"
+            }
+          },
+          {
+            "@type": "MenuItem",
+            "name": "D.O. Ribera del Duero · Crianza",
+            "description": "Intenso, con notas a frutos rojos maduros y madera tostada.",
+            "offers": {
+              "@type": "Offer",
+              "price": "5.50",
+              "priceCurrency": "EUR"
+            }
+          },
+          {
+            "@type": "MenuItem",
+            "name": "D.O. Rioja · Reserva",
+            "description": "Un clásico equilibrado, especiado y con largo final en boca.",
+            "offers": {
+              "@type": "Offer",
+              "price": "6.00",
+              "priceCurrency": "EUR"
+            }
+          },
+          {
+            "@type": "MenuItem",
+            "name": "Cava · Brut Nature Reserva",
+            "description": "Burbuja fina, notas cítricas y pastelería. Ideal para brindar.",
+            "offers": {
+              "@type": "Offer",
+              "price": "5.00",
+              "priceCurrency": "EUR"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+</script>
+<!-- JSONLD:FIN -->
+
+  <!-- Las tres fuentes latinas entran en el titular del hero, que es el LCP -->
+  <link rel="preload" href="assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/fraunces-latin-italica.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/secciones.css">
+</head>
+
+<body>
+
+  <a class="saltar" href="#contenido" data-i18n="nav.saltar">Saltar al contenido</a>
+
+  <!-- ====================================================================== -->
+  <!-- NAVEGACIÓN                                                             -->
+  <!-- ====================================================================== -->
+  <header class="nav nav--sobre-hero" id="nav">
+    <div class="nav__interior">
+
+      <a class="nav__marca" href="#inicio">
+        <img src="assets/logo.svg" alt="" width="40" height="40" aria-hidden="true">
+        <span class="nav__nombre">Terra &amp; Mar <small>Bistró</small></span>
+      </a>
+
+      <nav class="nav__enlaces" aria-label="Principal">
+        <a class="nav__enlace" href="#carta" data-i18n="nav.carta">Carta</a>
+        <a class="nav__enlace" href="#bodega" data-i18n="nav.bodega">Bodega</a>
+        <a class="nav__enlace" href="#nosotros" data-i18n="nav.nosotros">Nosotros</a>
+        <a class="nav__enlace" href="#eventos" data-i18n="nav.eventos">Eventos</a>
+        <a class="nav__enlace" href="#ubicacion" data-i18n="nav.ubicacion">Ubicación</a>
+      </nav>
+
+      <div class="nav__acciones">
+
+        <div class="idiomas idiomas--desplegable" role="group" data-i18n-attr="aria-label:nav.idioma">
+          <button type="button" class="idiomas__disparador" aria-haspopup="true" aria-expanded="false">
+            <span class="idiomas__actual"></span>
+            <svg class="idiomas__flecha" viewBox="0 0 12 8" aria-hidden="true">
+              <path d="M1 1.5 6 6.5l5-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+            </svg>
+          </button>
+          <div class="idiomas__menu">
+            <button type="button" data-idioma="es" aria-pressed="true"><svg class="idiomas__bandera" viewBox="0 0 3 2"
+                aria-hidden="true">
+                <rect width="3" height="2" fill="#AA151B" />
+                <rect width="3" height="1" y=".5" fill="#F1BF00" />
+              </svg>Español</button>
+            <button type="button" data-idioma="en" aria-pressed="false"><svg class="idiomas__bandera" viewBox="0 0 60 30"
+                aria-hidden="true">
+                <rect width="60" height="30" fill="#012169" />
+                <path d="M0 0 60 30M60 0 0 30" stroke="#fff" stroke-width="6" />
+                <path d="M0 0 60 30M60 0 0 30" stroke="#C8102E" stroke-width="4" />
+                <path d="M30 0V30M0 15H60" stroke="#fff" stroke-width="10" />
+                <path d="M30 0V30M0 15H60" stroke="#C8102E" stroke-width="6" />
+              </svg>English</button>
+            <button type="button" data-idioma="fr" aria-pressed="false"><svg class="idiomas__bandera" viewBox="0 0 3 2"
+                aria-hidden="true">
+                <rect width="1" height="2" fill="#0055A4" />
+                <rect width="1" height="2" x="1" fill="#fff" />
+                <rect width="1" height="2" x="2" fill="#EF4135" />
+              </svg>Français</button>
+          </div>
+        </div>
+
+        <button type="button" class="nav__control" data-alternar-tema aria-pressed="false"
+          aria-label="Cambiar a modo noche">
+          <span class="icono-tema" aria-hidden="true">
+            <svg class="icono-tema__sol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+              stroke-linecap="round">
+              <circle cx="12" cy="12" r="4.2" />
+              <path
+                d="M12 2v2.4M12 19.6V22M2 12h2.4M19.6 12H22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7" />
+            </svg>
+            <svg class="icono-tema__luna" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.5 14.4A8.6 8.6 0 1 1 9.6 3.5a6.9 6.9 0 0 0 10.9 10.9Z" />
+            </svg>
+          </span>
+        </button>
+
+        <a class="btn btn--fantasma btn--pequeno btn--auto" href="carta.html" target="_blank" rel="noopener"
+          data-i18n="nav.cartaqr">Carta QR</a>
+
+        <a class="btn btn--fantasma btn--pequeno btn--auto" href="panel.html" target="_blank" rel="noopener"
+          data-i18n="nav.panel">Panel</a>
+
+        <a class="btn btn--solido btn--pequeno btn--auto" href="#reservas" data-i18n="nav.reservar">Reservar</a>
+
+        <button type="button" class="nav__hamburguesa" id="hamburguesa" aria-expanded="false" aria-controls="menu-movil"
+          data-i18n-attr="aria-label:nav.menu">
+          <span></span><span></span><span></span>
+        </button>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ====================================================================== -->
+  <!-- MENÚ MÓVIL                                                             -->
+  <!-- ====================================================================== -->
+  <div class="menu-movil" id="menu-movil" inert>
+    <a href="#carta" style="--i:0" data-i18n="nav.carta">Carta</a>
+    <a href="#bodega" style="--i:1" data-i18n="nav.bodega">Bodega</a>
+    <a href="#nosotros" style="--i:2" data-i18n="nav.nosotros">Nosotros</a>
+    <a href="#eventos" style="--i:3" data-i18n="nav.eventos">Eventos</a>
+    <a href="#ubicacion" style="--i:4" data-i18n="nav.ubicacion">Ubicación</a>
+    <a href="#reservas" style="--i:5" data-i18n="nav.reservar">Reservar</a>
+
+    <div class="menu-movil__pie">
+      <div class="idiomas idiomas--desplegable" role="group" data-i18n-attr="aria-label:nav.idioma">
+        <button type="button" class="idiomas__disparador" aria-haspopup="true" aria-expanded="false">
+          <span class="idiomas__actual"></span>
+          <svg class="idiomas__flecha" viewBox="0 0 12 8" aria-hidden="true">
+            <path d="M1 1.5 6 6.5l5-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+          </svg>
+        </button>
+        <div class="idiomas__menu">
+          <button type="button" data-idioma="es" aria-pressed="true"><svg class="idiomas__bandera" viewBox="0 0 3 2"
+              aria-hidden="true">
+              <rect width="3" height="2" fill="#AA151B" />
+              <rect width="3" height="1" y=".5" fill="#F1BF00" />
+            </svg>Español</button>
+          <button type="button" data-idioma="en" aria-pressed="false"><svg class="idiomas__bandera" viewBox="0 0 60 30"
+              aria-hidden="true">
+              <rect width="60" height="30" fill="#012169" />
+              <path d="M0 0 60 30M60 0 0 30" stroke="#fff" stroke-width="6" />
+              <path d="M0 0 60 30M60 0 0 30" stroke="#C8102E" stroke-width="4" />
+              <path d="M30 0V30M0 15H60" stroke="#fff" stroke-width="10" />
+              <path d="M30 0V30M0 15H60" stroke="#C8102E" stroke-width="6" />
+            </svg>English</button>
+          <button type="button" data-idioma="fr" aria-pressed="false"><svg class="idiomas__bandera" viewBox="0 0 3 2"
+              aria-hidden="true">
+              <rect width="1" height="2" fill="#0055A4" />
+              <rect width="1" height="2" x="1" fill="#fff" />
+              <rect width="1" height="2" x="2" fill="#EF4135" />
+            </svg>Français</button>
+        </div>
+      </div>
+      <a class="enlace" href="carta.html" data-i18n="carta.qr">Ver carta para móvil</a>
+      <a class="enlace" href="panel.html" target="_blank" rel="noopener" data-i18n="nav.panel">Panel</a>
+    </div>
+  </div>
+
+  <main id="contenido">
+
+    <!-- ==================================================================== -->
+    <!-- HERO                                                                 -->
+    <!-- ==================================================================== -->
+    <section class="hero" id="inicio">
+
+      <div class="hero__fondo" data-capa="0.5,0,0.10">
+        <picture class="hero__foto hero__foto--dia">
+          <source media="(max-width: 760px)" srcset="assets/img/fachada-900.webp" type="image/webp">
+          <source srcset="assets/img/fachada-1600.webp" type="image/webp">
+          <img src="assets/img/fachada-1600.jpg" width="1600" height="899" fetchpriority="high" decoding="async"
+            alt="Fachada de piedra de Terra &amp; Mar Bistró en el Paseo Marítimo de Benicarló, con terraza y buganvillas al atardecer">
+        </picture>
+        <picture class="hero__foto hero__foto--noche">
+          <source media="(max-width: 760px)" srcset="assets/img/bar-900.webp" type="image/webp">
+          <source srcset="assets/img/bar-1600.webp" type="image/webp">
+          <img src="assets/img/bar-1600.jpg" width="1600" height="898" loading="lazy" decoding="async"
+            alt="Barra de latón de Terra &amp; Mar Bistró con un cóctel de autor recién preparado">
+        </picture>
+      </div>
+
+      <div class="hero__velo"></div>
+      <canvas id="mar" aria-hidden="true"></canvas>
+
+      <div class="hero__contenido">
+        <p class="hero__estado" data-estado data-capa="-0.9,1.5,0">Abierto ahora</p>
+
+        <span class="hero__etiqueta" data-i18n="hero.etiqueta" data-capa="-0.9,1.5,0">Benicarló · Castellón</span>
+
+        <h1 class="hero__titulo">
+          <span class="linea-1" data-i18n-tema="hero.titulo" data-capa="-0.5,1.2,0">Cocina de raíz</span>
+          <span class="linea-2" data-i18n-tema="hero.titulo2" data-capa="-1.1,1.2,0">&amp; elegancia mediterránea</span>
+        </h1>
+
+        <p class="hero__texto" data-i18n-tema="hero.texto" data-capa="-1.5,1.8,0">
+          Producto de la lonja de Benicarló y de la huerta del Maestrat, tratado con respeto y servido a treinta metros
+          del mar.
+        </p>
+
+        <div class="hero__acciones" data-capa="-1.9,1.9,0">
+          <a class="btn btn--solido btn--auto" href="#reservas" data-i18n-tema="hero.cta">Reservar mesa</a>
+          <a class="btn btn--claro btn--auto" href="#carta" data-i18n="hero.cta2">Ver la carta</a>
+        </div>
+      </div>
+
+      <span class="hero__scroll" aria-hidden="true" data-i18n="hero.scroll">Desliza para descubrir</span>
+
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- CONCEPTO                                                             -->
+    <!-- ==================================================================== -->
+    <section class="seccion concepto grano" id="concepto">
+      <div class="contenedor">
+
+        <div class="concepto__intro">
+
+          <div class="concepto__sello reveal">
+            <svg class="sello" viewBox="0 0 200 200" role="img" aria-label="Terra &amp; Mar Bistró">
+              <defs>
+                <path id="arco-arriba" d="M26 100a74 74 0 0 1 148 0" />
+                <path id="arco-abajo" d="M32 100a68 68 0 0 0 136 0" />
+                <path id="sello-hoja" d="M0 0C5-6 15-7 21-3 15 3 5 5 0 0Z" />
+              </defs>
+
+              <circle class="sello__aro" cx="100" cy="100" r="92" pathLength="1" />
+
+              <text class="sello__texto">
+                <textPath href="#arco-arriba" startOffset="50%" text-anchor="middle">TERRA &amp; MAR</textPath>
+              </text>
+              <text class="sello__texto sello__texto--abajo">
+                <textPath href="#arco-abajo" startOffset="50%" text-anchor="middle">BISTRÓ</textPath>
+              </text>
+
+              <g class="sello__ola" transform="translate(23 27.1) scale(.7)" fill="none" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path pathLength="1" class="sello__trazo sello__trazo--oro"
+                  d="M45 116C45 80 66 56 94 56c27 0 47 13 51 27" stroke-width="3.5" />
+                <path pathLength="1" class="sello__trazo sello__trazo--terra"
+                  d="M34 118C37 92 55 76 79 78c26 2 44 19 42 34-3 15-18 20-25 10-6-9 2-21 13-17" stroke-width="4.1" />
+                <path pathLength="1" class="sello__trazo sello__trazo--terra" d="M40 122c20-9 36 6 62 7 24 1 39-8 49-20"
+                  stroke-width="3.2" />
+                <path pathLength="1" class="sello__trazo sello__trazo--oro" d="M45 135c22-9 38 6 64 6 22 0 36-8 46-19"
+                  stroke-width="2.9" />
+                <path pathLength="1" class="sello__trazo sello__trazo--oro"
+                  d="M48 117c0 25 23 41 55 41 27 0 46-10 55-25" stroke-width="3.2" />
+                <path pathLength="1" class="sello__trazo sello__trazo--oro" d="M138 74c12 15 22 36 29 62"
+                  stroke-width="2.8" />
+                <path pathLength="1" class="sello__trazo sello__trazo--oro" d="M152 141c-7-1-12 5-8 9 4 4 11 1 10-5"
+                  stroke-width="2.5" />
+                <g class="sello__hojas">
+                  <use href="#sello-hoja" transform="translate(142 80) rotate(-60)" />
+                  <use href="#sello-hoja" transform="translate(145 89) rotate(110)" />
+                  <use href="#sello-hoja" transform="translate(151 100) rotate(-54)" />
+                  <use href="#sello-hoja" transform="translate(155 111) rotate(114)" />
+                  <use href="#sello-hoja" transform="translate(160 123) rotate(-48)" />
+                  <use href="#sello-hoja" transform="translate(164 134) rotate(118)" />
+                </g>
+              </g>
+            </svg>
+          </div>
+
+          <div class="concepto__texto">
+            <div class="seccion__cabecera reveal" style="margin-bottom:0">
+              <span class="etiqueta" data-i18n="concepto.etiqueta">El concepto</span>
+              <h2 class="display t-h2" data-i18n="concepto.titulo">Donde la tierra y el mar se sientan a la misma mesa
+              </h2>
+              <p class="parrafo" data-i18n="concepto.texto">
+                Nuestro concepto nace del respeto por el producto local y la pasión por la gastronomía mediterránea.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="rejilla concepto__pilares" data-stagger>
+          <article class="tarjeta tarjeta--giro reveal" tabindex="0" role="button" aria-pressed="false">
+            <div class="tarjeta__interior">
+              <div class="tarjeta__cara tarjeta__cara--frente">
+                <span class="tarjeta__num">01</span>
+                <h3 class="display t-h4" data-i18n="concepto.p1.t">Producto de proximidad</h3>
+                <span class="tarjeta__pista" data-i18n="concepto.pista">Toca para saber más</span>
+              </div>
+              <div class="tarjeta__cara tarjeta__cara--dorso">
+                <span class="tarjeta__num">01</span>
+                <h3 class="display t-h4" data-i18n="concepto.p1.t">Producto de proximidad</h3>
+                <p class="parrafo" data-i18n="concepto.p1.d">Pescado de la lonja de Benicarló.</p>
+              </div>
+            </div>
+          </article>
+          <article class="tarjeta tarjeta--giro reveal" tabindex="0" role="button" aria-pressed="false">
+            <div class="tarjeta__interior">
+              <div class="tarjeta__cara tarjeta__cara--frente">
+                <span class="tarjeta__num">02</span>
+                <h3 class="display t-h4" data-i18n="concepto.p2.t">Técnica sin artificio</h3>
+                <span class="tarjeta__pista" data-i18n="concepto.pista">Toca para saber más</span>
+              </div>
+              <div class="tarjeta__cara tarjeta__cara--dorso">
+                <span class="tarjeta__num">02</span>
+                <h3 class="display t-h4" data-i18n="concepto.p2.t">Técnica sin artificio</h3>
+                <p class="parrafo" data-i18n="concepto.p2.d">Baja temperatura, brasa y fondos largos.</p>
+              </div>
+            </div>
+          </article>
+          <article class="tarjeta tarjeta--giro reveal" tabindex="0" role="button" aria-pressed="false">
+            <div class="tarjeta__interior">
+              <div class="tarjeta__cara tarjeta__cara--frente">
+                <span class="tarjeta__num">03</span>
+                <h3 class="display t-h4" data-i18n="concepto.p3.t">Sala que acompaña</h3>
+                <span class="tarjeta__pista" data-i18n="concepto.pista">Toca para saber más</span>
+              </div>
+              <div class="tarjeta__cara tarjeta__cara--dorso">
+                <span class="tarjeta__num">03</span>
+                <h3 class="display t-h4" data-i18n="concepto.p3.t">Sala que acompaña</h3>
+                <p class="parrafo" data-i18n="concepto.p3.d">Un comedor de treinta cubiertos.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- CARTA                                                                -->
+    <!-- ==================================================================== -->
+    <section class="seccion carta" id="carta">
+      <div class="contenedor">
+
+        <div class="seccion__cabecera reveal">
+          <span class="etiqueta" data-i18n="carta.etiqueta">La carta</span>
+          <h2 class="display t-h2" data-i18n="carta.titulo">Diecisiete platos, ninguno de relleno</h2>
+          <p class="parrafo" data-i18n="carta.texto">
+            La carta cambia con la temporada y con lo que llega cada mañana de la lonja.
+          </p>
+
+          <p class="carta__pista">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3l6.5 15.5 2-6.3 6.3-2z"/></svg>
+            <span data-i18n="carta.pista">Toca un plato —o pasa el ratón— para ver su foto</span>
+          </p>
+        </div>
+
+        <div class="carta__filtros">
+          <div class="chips chips--carril" id="carta-categorias" role="group"
+            data-i18n-attr="aria-label:carta.etiqueta"></div>
+
+          <div class="carta__alergenos-caja" id="carta-alergenos-caja">
+            <button type="button" class="carta__alergenos-titulo" id="carta-alergenos-toggle" aria-expanded="true"
+              aria-controls="carta-alergenos">
+              <span data-i18n="carta.filtrar">Filtrar por alérgeno</span>
+              <svg viewBox="0 0 12 8" aria-hidden="true" width="11" height="8">
+                <path d="M1 1.5 6 6.5l5-5" fill="none" stroke="currentColor" stroke-width="1.7"
+                  stroke-linecap="round" />
+              </svg>
+            </button>
+            <div class="chips chips--carril" id="carta-alergenos" role="group"
+              data-i18n-attr="aria-label:carta.filtrar.ayuda"></div>
+            <button type="button" class="enlace" id="carta-limpiar" hidden data-i18n="carta.limpiar">Quitar
+              filtros</button>
+          </div>
+
+          <label class="qr-conmutador" style="margin-top:12px">
+            <input type="checkbox" id="carta-fotos">
+            <span class="qr-conmutador__pista" aria-hidden="true"></span>
+            <span data-i18n="carta.verfotos">Ver fotos</span>
+          </label>
+        </div>
+
+        <div id="carta-lista" aria-live="polite"></div>
+        <p class="carta__vacio" id="carta-vacio" hidden data-i18n="carta.sinresultados">
+          Ningún plato cumple ese filtro.
+        </p>
+
+        <div class="carta__nota">
+          <span data-i18n="carta.nota">Disponemos de carta de alérgenos completa.</span>
+          <span data-i18n="carta.iva">Todos los precios incluyen IVA.</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- BODEGA & COCTELERÍA — se enciende en modo noche                      -->
+    <!-- ==================================================================== -->
+    <section class="seccion seccion--difiere bodega" id="bodega">
+
+      <div class="contenedor">
+        <div class="seccion__cabecera reveal">
+          <span class="etiqueta" data-i18n="bodega.etiqueta">Bodega &amp; Coctelería</span>
+          <h2 class="display t-h2" data-i18n="bodega.titulo">La armonía perfecta para cada plato</h2>
+          <p class="parrafo" data-i18n="bodega.texto">Una barra que no es un accesorio del comedor.</p>
+        </div>
+      </div>
+
+      <div class="bodega__banda reveal">
+        <picture>
+          <source media="(max-width: 760px)" srcset="assets/img/bodega-banda-900.webp" type="image/webp">
+          <source srcset="assets/img/bodega-banda-1600.webp" type="image/webp">
+          <img src="assets/img/bodega-banda-1600.webp" width="1600" height="394" loading="lazy" decoding="async"
+            alt="Barra de latón de Terra &amp; Mar Bistró con cócteles de autor y aperitivos servidos, botellería al fondo">
+        </picture>
+      </div>
+
+      <div class="contenedor">
+        <div class="bodega__rejilla">
+
+          <div class="bodega__col">
+            <h3 class="display t-h3 bodega__titulo" data-i18n="bodega.cocteles">Cócteles de autor</h3>
+            <div id="bodega-cocteles"></div>
+          </div>
+
+          <div class="bodega__col">
+            <h3 class="display t-h3 bodega__titulo" data-i18n="bodega.vinos">Selección de vinos</h3>
+            <div id="bodega-vinos"></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- CHEF & EQUIPO                                                        -->
+    <!-- ==================================================================== -->
+    <section class="seccion seccion--difiere equipo" id="nosotros">
+      <div class="contenedor equipo__rejilla">
+
+        <div class="equipo__medio reveal">
+          <picture>
+            <source media="(max-width: 760px)" srcset="assets/img/interior-700.webp" type="image/webp">
+            <img src="assets/img/interior-1200.webp" width="1200" height="900" loading="lazy" decoding="async"
+              alt="Comedor de Terra &amp; Mar Bistró con vigas de madera vistas, banquetas verdes y mesas vestidas de lino">
+          </picture>
+        </div>
+
+        <div class="equipo__texto">
+          <div class="seccion__cabecera reveal" style="margin-bottom:clamp(26px,3vw,38px)">
+            <span class="etiqueta" data-i18n="equipo.etiqueta">Cocina y sala</span>
+            <h2 class="display t-h3" data-i18n="equipo.titulo">Cocina de raíz es conocer por su nombre a quien te vende
+              el pescado</h2>
+            <p class="parrafo" data-i18n="equipo.texto">No tenemos un proveedor: tenemos una lonja a diez minutos.</p>
+          </div>
+
+          <dl class="equipo__datos reveal" data-stagger>
+            <div>
+              <dt data-i18n="equipo.d1.n">30 m</dt>
+              <dd data-i18n="equipo.d1.t">del Mediterráneo</dd>
+            </div>
+            <div>
+              <dt data-i18n="equipo.d2.n">Lonja</dt>
+              <dd data-i18n="equipo.d2.t">de Benicarló, cada mañana</dd>
+            </div>
+            <div>
+              <dt data-i18n="equipo.d3.n">30</dt>
+              <dd data-i18n="equipo.d3.t">cubiertos por servicio</dd>
+            </div>
+          </dl>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- GALERÍA — carril horizontal anclado (carrusel con snap en móvil)     -->
+    <!-- ==================================================================== -->
+    <section class="galeria" id="galeria">
+      <div class="galeria__pin">
+
+        <div class="contenedor galeria__cabecera">
+          <span class="etiqueta" data-i18n="galeria.etiqueta">El local</span>
+          <h2 class="display t-h3" data-i18n="galeria.titulo">Piedra, madera y luz de poniente</h2>
+          <span class="galeria__ayuda" data-i18n="galeria.ayuda">Desliza para ver más</span>
+        </div>
+
+        <div class="galeria__carril">
+          <figure class="galeria__foto">
+            <img src="assets/img/fachada-900.webp" width="900" height="506" loading="lazy" decoding="async"
+              data-i18n-attr="alt:galeria.1" alt="Fachada de piedra y terraza con buganvillas al atardecer">
+            <figcaption data-i18n="galeria.1">Fachada de piedra y terraza con buganvillas al atardecer</figcaption>
+          </figure>
+          <figure class="galeria__foto galeria__foto--alta">
+            <img src="assets/img/interior-700.webp" width="700" height="525" loading="lazy" decoding="async"
+              data-i18n-attr="alt:galeria.2"
+              alt="Comedor con vigas de madera, banquetas verdes y mesas vestidas de lino">
+            <figcaption data-i18n="galeria.2">Comedor con vigas de madera y mesas de lino</figcaption>
+          </figure>
+          <figure class="galeria__foto">
+            <img src="assets/img/coctel-700.webp" width="700" height="525" loading="lazy" decoding="async"
+              data-i18n-attr="alt:galeria.3" alt="Barra de latón con la botellería y coctelería de autor">
+            <figcaption data-i18n="galeria.3">Barra de latón con la coctelería de autor</figcaption>
+          </figure>
+          <figure class="galeria__foto galeria__foto--alta">
+            <img src="assets/img/mesa-700.webp" width="700" height="525" loading="lazy" decoding="async"
+              data-i18n-attr="alt:galeria.4" alt="Mesa preparada con la carta, copa de blanco y vela encendida">
+            <figcaption data-i18n="galeria.4">Mesa preparada con la carta y una copa de blanco</figcaption>
+          </figure>
+          <figure class="galeria__foto">
+            <img src="assets/img/terraza-900.webp" width="900" height="675" loading="lazy" decoding="async"
+              data-i18n-attr="alt:galeria.5" alt="Mesa en la terraza al atardecer, junto a la buganvilla">
+            <figcaption data-i18n="galeria.5">La terraza al atardecer</figcaption>
+          </figure>
+          <figure class="galeria__foto galeria__foto--alta">
+            <img src="assets/img/detalle-mesa-700.webp" width="700" height="875" loading="lazy" decoding="async"
+              data-i18n-attr="alt:galeria.6" alt="Detalle de la mesa: plato de borde terracota, lino y una vela">
+            <figcaption data-i18n="galeria.6">El detalle en cada mesa</figcaption>
+          </figure>
+          <figure class="galeria__foto">
+            <img src="assets/img/brindis-900.webp" width="900" height="675" loading="lazy" decoding="async"
+              data-i18n-attr="alt:galeria.7" alt="Dos copas de vino brindando sobre la mesa">
+            <figcaption data-i18n="galeria.7">Un brindis, media razón para venir</figcaption>
+          </figure>
+          <figure class="galeria__foto galeria__foto--alta">
+            <img src="assets/img/estanteria-vinos-700.webp" width="700" height="875" loading="lazy" decoding="async"
+              data-i18n-attr="alt:galeria.8" alt="Estantería de madera y latón con botellas de la bodega">
+            <figcaption data-i18n="galeria.8">La bodega, a la vista</figcaption>
+          </figure>
+        </div>
+
+        <div class="galeria__barra" aria-hidden="true"></div>
+
+      </div>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- EVENTOS & PRIVADOS                                                   -->
+    <!-- ==================================================================== -->
+    <section class="seccion seccion--difiere eventos" id="eventos">
+      <div class="contenedor eventos__rejilla">
+
+        <div>
+          <div class="seccion__cabecera reveal" style="margin-bottom:clamp(24px,3vw,34px)">
+            <span class="etiqueta" data-i18n="eventos.etiqueta">Eventos &amp; privados</span>
+            <h2 class="display t-h2" data-i18n="eventos.titulo">Vuestra celebración, sin ruido</h2>
+            <p class="parrafo" data-i18n="eventos.texto">Comuniones, cenas de empresa y aniversarios.</p>
+          </div>
+
+          <ul class="eventos__ventajas reveal" data-stagger>
+            <li data-i18n="eventos.v1">Comedor completo hasta 30 personas</li>
+            <li data-i18n="eventos.v2">Menú cerrado a medida, con opciones veganas y sin gluten</li>
+            <li data-i18n="eventos.v3">Maridaje opcional de la bodega</li>
+            <li data-i18n="eventos.v4">Cuenta única y factura para empresa</li>
+          </ul>
+        </div>
+
+        <div class="eventos__caja reveal">
+          <form id="form-evento" novalidate>
+            <div class="formulario__rejilla">
+
+              <div class="campo">
+                <label class="campo__etiqueta" for="e-tipo" data-i18n="eventos.f.tipo">Tipo de evento</label>
+                <select id="e-tipo" name="evento">
+                  <option data-i18n="eventos.f.tipo.1">Cena de empresa</option>
+                  <option data-i18n="eventos.f.tipo.2">Comunión o bautizo</option>
+                  <option data-i18n="eventos.f.tipo.3">Aniversario o cumpleaños</option>
+                  <option data-i18n="eventos.f.tipo.4">Comida de trabajo</option>
+                  <option data-i18n="eventos.f.tipo.5">Otro</option>
+                </select>
+                <span class="campo__error" aria-live="polite"></span>
+              </div>
+
+              <div class="campo">
+                <label class="campo__etiqueta" for="e-personas" data-i18n="reserva.f.personas">Comensales</label>
+                <select id="e-personas" name="personas"></select>
+                <span class="campo__error" aria-live="polite"></span>
+              </div>
+
+              <div class="campo">
+                <label class="campo__etiqueta" for="e-fecha" data-i18n="reserva.f.fecha">Fecha</label>
+                <input type="date" id="e-fecha" name="fecha">
+                <span class="campo__error" aria-live="polite"></span>
+              </div>
+
+              <div class="campo">
+                <label class="campo__etiqueta" for="e-nombre" data-i18n="reserva.f.nombre">Nombre y apellidos</label>
+                <input type="text" id="e-nombre" name="nombre" autocomplete="organization" required>
+                <span class="campo__error" aria-live="polite"></span>
+              </div>
+
+              <div class="campo">
+                <label class="campo__etiqueta" for="e-tel" data-i18n="reserva.f.tel">Teléfono</label>
+                <input type="tel" id="e-tel" name="tel" autocomplete="tel" inputmode="tel" required>
+                <span class="campo__error" aria-live="polite"></span>
+              </div>
+
+              <div class="campo">
+                <label class="campo__etiqueta" for="e-email" data-i18n="reserva.f.email">Email</label>
+                <input type="email" id="e-email" name="email" autocomplete="email" inputmode="email" required>
+                <span class="campo__error" aria-live="polite"></span>
+              </div>
+
+              <div class="campo campo--ancho">
+                <label class="campo__etiqueta" for="e-notas" data-i18n="eventos.f.mensaje">Cuéntanos qué tienes en
+                  mente</label>
+                <textarea id="e-notas" name="notas" rows="3"></textarea>
+                <span class="campo__error" aria-live="polite"></span>
+              </div>
+
+            </div>
+
+            <button type="submit" class="btn btn--solido" style="margin-top:22px" data-i18n="eventos.cta">Pedir
+              propuesta</button>
+          </form>
+
+          <div class="reserva-exito" id="evento-exito" hidden tabindex="-1" role="status">
+            <span class="reserva-exito__marca" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="m4.5 12.5 5 5 10-11" fill="none" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+            <h3 class="display t-h4" data-i18n="reserva.ok.t">Solicitud recibida</h3>
+            <p class="parrafo" data-i18n="reserva.texto">Te contestamos con una propuesta en breve.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- TARJETA REGALO                                                       -->
+    <!-- ==================================================================== -->
+    <section class="seccion seccion--difiere regalo" id="regalo">
+      <div class="contenedor">
+
+        <div class="seccion__cabecera centrado reveal">
+          <span class="etiqueta" data-i18n="regalo.etiqueta">Para regalar</span>
+          <h2 class="display t-h2" data-i18n="regalo.titulo">Una mesa reservada es mejor regalo que un objeto</h2>
+          <p class="parrafo" data-i18n="regalo.texto">Tarjeta física o digital, sin caducidad.</p>
+        </div>
+
+        <div class="rejilla" data-stagger>
+          <article class="tarjeta tarjeta--regalo reveal">
+            <h3 class="display t-h4" data-i18n="regalo.1.t">Cena para dos</h3>
+            <p class="parrafo" data-i18n="regalo.1.d">Entrante a compartir, dos principales, postre y una botella de la
+              casa.</p>
+            <button type="button" class="enlace" data-regalo="regalo.1.t" data-i18n="regalo.cta">Quiero
+              regalarlo</button>
+          </article>
+          <article class="tarjeta tarjeta--regalo reveal">
+            <h3 class="display t-h4" data-i18n="regalo.2.t">Experiencia maridaje</h3>
+            <p class="parrafo" data-i18n="regalo.2.d">Cinco pases del chef con cinco copas elegidas por la sala.</p>
+            <button type="button" class="enlace" data-regalo="regalo.2.t" data-i18n="regalo.cta">Quiero
+              regalarlo</button>
+          </article>
+          <article class="tarjeta tarjeta--regalo reveal">
+            <h3 class="display t-h4" data-i18n="regalo.3.t">Importe libre</h3>
+            <p class="parrafo" data-i18n="regalo.3.d">Desde 30 €. Lo demás lo eligen ellos.</p>
+            <button type="button" class="enlace" data-regalo="regalo.3.t" data-i18n="regalo.cta">Quiero
+              regalarlo</button>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- RESERVAS                                                             -->
+    <!-- ==================================================================== -->
+    <section class="seccion seccion--difiere reservas" id="reservas">
+      <div class="contenedor reservas__rejilla">
+
+        <div class="reservas__intro">
+          <div class="seccion__cabecera reveal" style="margin-bottom:clamp(26px,3vw,40px)">
+            <span class="etiqueta" data-i18n="reserva.etiqueta">Reservas</span>
+            <h2 class="display t-h2" data-i18n="reserva.titulo">Reserva tu mesa</h2>
+            <p class="parrafo" data-i18n="reserva.texto">Confirmamos en menos de dos horas.</p>
+          </div>
+
+          <ul class="reservas__contacto reveal" data-stagger>
+            <li>
+              <a href="tel:+34964123456">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M6.6 3h3l1.6 4-2 1.4a12 12 0 0 0 6.4 6.4l1.4-2 4 1.6v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.2 2 2 0 0 1 6.6 3Z" />
+                </svg>
+                <span>+34 964 123 456</span>
+              </a>
+            </li>
+            <li>
+              <a href="mailto:reservas@terraymarbistro.com">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M3.5 5.5h17v13h-17z" />
+                  <path d="m3.5 6.5 8.5 6 8.5-6" />
+                </svg>
+                <span>reservas@terraymarbistro.com</span>
+              </a>
+            </li>
+            <li>
+              <span class="reservas__horario">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="8.5" />
+                  <path d="M12 7v5.3l3.4 2" />
+                </svg>
+                <span data-estado>Abierto ahora</span>
+              </span>
+            </li>
+          </ul>
+
+          <p class="reservas__grupos reveal" data-i18n="reserva.grupos">
+            ¿Sois más de 10? Escríbenos y lo organizamos como un evento privado.
+          </p>
+        </div>
+
+        <div class="reservas__caja reveal">
+
+          <form id="form-reserva" novalidate>
+            <div class="formulario__rejilla">
+
+              <div class="campo">
+                <label class="campo__etiqueta" for="r-fecha" data-i18n="reserva.f.fecha">Fecha</label>
+                <input type="date" id="r-fecha" name="fecha" required>
+                <span class="campo__error" aria-live="polite"></span>
+              </div>
+
+              <div class="campo">
+                <label class="campo__etiqueta" for="r-turno" data-i18n="reserva.f.turno">Turno</label>
+                <select id="r-turno" name="turno" required>
+                  <option value="comida" data-i18n="reserva.f.turno.comida">Comida · 13:30 a 16:00</option>
+                  <option value="cena" data-i18n="reserva.f.turno.cena">Cena · 20:30 a 23:30</option>
+                </select>
+                <span class="campo__error" aria-live="polite"></span>
+              </div>
+
+              <div class="campo">
+                <label class="campo__etiqueta" for="r-hora" data-i18n="reserva.f.hora">Hora</label>
+                <select id="r-hora" name="hora" required></select>
+                <span class="campo__error" aria-live="polite"></span>
+              </div>
+
+              <div class="campo">
+                <label class="campo__etiqueta" for="r-personas" data-i18n="reserva.f.personas">Comensales</label>
+                <select id="r-personas" name="personas" required></select>
+                <span class="campo__error" aria-live="polite"></span>
+              </div>
+
+              <div class="campo campo--ancho">
+                <label class="campo__etiqueta" for="r-nombre" data-i18n="reserva.f.nombre">Nombre y apellidos</label>
+                <input type="text" id="r-nombre" name="nombre" autocomplete="name" required>
+                <span class="campo__error" aria-live="polite"></span>
+              </div>
+
+              <div class="campo">
+                <label class="campo__etiqueta" for="r-tel" data-i18n="reserva.f.tel">Teléfono</label>
+                <input type="tel" id="r-tel" name="tel" autocomplete="tel" inputmode="tel" required>
+                <span class="campo__error" aria-live="polite"></span>
+              </div>
+
+              <div class="campo">
+                <label class="campo__etiqueta" for="r-email" data-i18n="reserva.f.email">Email</label>
+                <input type="email" id="r-email" name="email" autocomplete="email" inputmode="email">
+                <span class="campo__error" aria-live="polite"></span>
+              </div>
+
+              <div class="campo campo--ancho">
+                <label class="campo__etiqueta" for="r-notas" data-i18n="reserva.f.notas">Alergias, intolerancias o
+                  peticiones</label>
+                <textarea id="r-notas" name="notas" rows="3" data-i18n-attr="placeholder:reserva.f.notas.ph"></textarea>
+                <span class="campo__error" aria-live="polite"></span>
+              </div>
+
+            </div>
+
+            <div class="reservas__acciones">
+              <button type="submit" class="btn btn--solido" data-i18n="reserva.f.enviar">Confirmar reserva</button>
+              <a href="#" class="btn btn--fantasma" id="reserva-wa" data-i18n="reserva.f.wa">O reserva por WhatsApp</a>
+            </div>
+          </form>
+
+          <div class="reserva-exito" id="reserva-exito" hidden tabindex="-1" role="status">
+            <span class="reserva-exito__marca" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="m4.5 12.5 5 5 10-11" fill="none" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+            <h3 class="display t-h4" data-i18n="reserva.ok.t">Reserva recibida</h3>
+            <p class="parrafo" data-detalle></p>
+            <button type="button" class="enlace" id="reserva-otra" data-i18n="reserva.ok.otra">Hacer otra
+              reserva</button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- UBICACIÓN                                                            -->
+    <!-- ==================================================================== -->
+    <section class="seccion seccion--difiere ubicacion grano" id="ubicacion">
+      <div class="contenedor ubicacion__rejilla">
+
+        <div class="ubicacion__datos">
+          <div class="seccion__cabecera reveal" style="margin-bottom:clamp(26px,3vw,40px)">
+            <span class="etiqueta" data-i18n="ubicacion.etiqueta">Dónde estamos</span>
+            <h2 class="display t-h2" data-i18n="ubicacion.titulo">Paseo Marítimo, 45 · Benicarló</h2>
+          </div>
+
+          <dl class="ubicacion__lista reveal" data-stagger>
+            <div>
+              <dt data-i18n="ubicacion.horario">Horario</dt>
+              <dd>
+                <span data-i18n="ubicacion.horario.comidas">Martes a domingo · 13:30 a 16:00</span>
+                <span data-i18n="ubicacion.horario.cenas">Jueves a sábado · 20:30 a 23:30</span>
+                <span data-i18n="ubicacion.horario.cerrado">Lunes cerrado por descanso</span>
+              </dd>
+            </div>
+            <div>
+              <dt data-i18n="ubicacion.contacto">Contacto</dt>
+              <dd>
+                <a href="tel:+34964123456">+34 964 123 456</a>
+                <a href="mailto:reservas@terraymarbistro.com">reservas@terraymarbistro.com</a>
+              </dd>
+            </div>
+            <div>
+              <dt data-i18n="ubicacion.vestimenta">Código de vestimenta</dt>
+              <dd><span data-i18n="ubicacion.vestimenta.d">Smart casual.</span></dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="ubicacion__medio reveal">
+          <picture>
+            <source media="(max-width: 760px)" srcset="assets/img/mesa-700.webp" type="image/webp">
+            <img src="assets/img/mesa-1200.webp" width="1200" height="900" loading="lazy" decoding="async"
+              alt="Mesa vestida de lino con la carta, una copa de vino blanco y una vela encendida">
+          </picture>
+          <a class="btn btn--solido ubicacion__cta" target="_blank" rel="noopener"
+            href="https://www.google.com/maps/search/?api=1&amp;query=Paseo%20Mar%C3%ADtimo%2045%2C%2012580%20Benicarl%C3%B3%2C%20Castell%C3%B3n"
+            data-i18n="ubicacion.mapa">Cómo llegar</a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====================================================================== -->
+  <!-- PIE                                                                    -->
+  <!-- ====================================================================== -->
+  <footer class="pie grano">
+    <div class="contenedor">
+
+      <div class="pie__rejilla">
+
+        <div>
+          <a class="nav__marca" href="#inicio" style="margin-bottom:18px">
+            <img src="assets/logo.svg" alt="" width="46" height="46" aria-hidden="true">
+            <span class="nav__nombre">Terra &amp; Mar<small>Bistró</small></span>
+          </a>
+          <p class="parrafo" style="font-size:var(--t-base)" data-i18n="footer.claim">
+            Cocina de raíz &amp; elegancia mediterránea
+          </p>
+        </div>
+
+        <div>
+          <h2 class="pie__titulo" data-i18n="ubicacion.etiqueta">Dónde estamos</h2>
+          <address class="pie__lista" style="font-style:normal">
+            <span>Paseo Marítimo, 45</span>
+            <span>12580 Benicarló</span>
+            <span>Castellón, España</span>
+          </address>
+        </div>
+
+        <div>
+          <h2 class="pie__titulo" data-i18n="ubicacion.horario">Horario</h2>
+          <div class="pie__lista">
+            <span data-i18n="ubicacion.horario.comidas">Martes a domingo · 13:30 a 16:00</span>
+            <span data-i18n="ubicacion.horario.cenas">Jueves a sábado · 20:30 a 23:30</span>
+            <span data-i18n="ubicacion.horario.cerrado">Lunes cerrado por descanso</span>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="pie__titulo" data-i18n="ubicacion.contacto">Contacto</h2>
+          <div class="pie__lista">
+            <a href="tel:+34964123456">+34 964 123 456</a>
+            <a href="mailto:reservas@terraymarbistro.com">reservas@terraymarbistro.com</a>
+            <a href="carta.html" data-i18n="carta.qr">Ver carta para móvil</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="pie__abajo">
+        <span>© <span id="anyo">2026</span> Terra &amp; Mar Bistró · <span data-i18n="footer.derechos">Todos los
+            derechos reservados.</span></span>
+        <span class="pie__firma">
+          <span data-i18n="footer.creditos">Diseño y desarrollo:</span>
+          <a href="https://mistereia.com" target="_blank" rel="noopener">Mistereia</a>
+        </span>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Datos y utilidades -->
+  <script src="js/datos/negocio.js"></script>
+  <script src="js/datos/i18n.js"></script>
+  <script src="js/datos/carta.js"></script>
+  <script src="js/almacen.js"></script>
+  <script src="js/almacen-carta.js"></script>
+  <!-- Comportamiento -->
+  <script src="js/idioma.js"></script>
+  <script src="js/tema.js"></script>
+  <script src="js/escena.js"></script>
+  <script src="js/mar.js"></script>
+  <script src="js/carta-ui.js"></script>
+  <script src="js/galeria.js"></script>
+  <script src="js/reservas.js"></script>
+  <script src="js/tarjetas-giro.js"></script>
+
+</body>
+
+</html>

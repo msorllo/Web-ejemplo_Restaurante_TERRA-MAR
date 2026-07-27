@@ -1,0 +1,1132 @@
+/* ==========================================================================
+   TERRA & MAR BISTRÓ — secciones.css
+   Estilos propios de cada sección de la portada.
+   ========================================================================== */
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  align-items: end;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--c-fondo-hondo);
+  /* Espacio reservado bajo el texto para el mar y la ola. El hero está
+     anclado por abajo (align-items:end), así que este valor es lo que
+     controla la altura del bloque de texto: subirlo empuja todo el
+     contenido hacia arriba sin tocar el resto del layout. */
+  --hero-pie: clamp(190px, 30vh, 320px);
+}
+
+/* --- Fondo fotográfico ---------------------------------------------------- */
+.hero__fondo {
+  position: absolute;
+  inset: -6% 0 0 0;
+  z-index: 0;
+  will-change: transform;
+}
+.hero__foto {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  /* !important por el mismo motivo que .icono-tema: si no, .tema-cambiando
+     sustituye esta transición y la foto de día/noche cambia de golpe en vez
+     de fundirse. */
+  transition: opacity .9s var(--ease) !important;
+}
+.hero__foto img { width: 100%; height: 100%; object-fit: cover; object-position: center 45%; }
+
+[data-tema='dia']   .hero__foto--dia   { opacity: 1; }
+[data-tema='noche'] .hero__foto--noche { opacity: 1; }
+
+/* Velo: legibilidad del texto sin apagar la foto */
+.hero__velo {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(to top, rgba(18,12,8,.86) 0%, rgba(18,12,8,.45) 34%, rgba(18,12,8,.12) 62%, rgba(18,12,8,.34) 100%);
+}
+[data-tema='noche'] .hero__velo {
+  background:
+    linear-gradient(to top, rgba(6,9,13,.92) 0%, rgba(6,9,13,.55) 36%, rgba(6,9,13,.22) 64%, rgba(6,9,13,.5) 100%);
+}
+
+/* --- El mar ---------------------------------------------------------------- */
+/* El canvas es un elemento reemplazado: con left/right:0 conservaría su tamaño
+   intrínseco (300×150), así que el ancho se declara explícitamente. */
+#mar {
+  position: absolute;
+  left: 0; bottom: -1px;
+  width: 100%;
+  height: 19%;
+  min-height: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* --- Contenido ------------------------------------------------------------- */
+.hero__contenido {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: var(--ancho);
+  margin-inline: auto;
+  padding-inline: var(--pad-lateral);
+  padding-bottom: var(--hero-pie);
+  padding-top: calc(var(--nav-alto) + 24px);
+  color: #FFF8F0;
+}
+
+.hero__estado {
+  display: inline-flex;
+  align-items: center;
+  gap: .6em;
+  padding: 7px 16px 7px 13px;
+  border-radius: var(--r-full);
+  background: rgba(255, 248, 240, .1);
+  border: 1px solid rgba(255, 248, 240, .26);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+.hero__estado::before {
+  content: '';
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #8FBF6B;
+  box-shadow: 0 0 0 0 rgba(143, 191, 107, .65);
+  animation: latido 2.6s var(--ease) infinite;
+}
+.hero__estado.esta-cerrado::before { background: var(--c-acento); animation: none; }
+
+@keyframes latido {
+  0%   { box-shadow: 0 0 0 0 rgba(143,191,107,.6); }
+  70%  { box-shadow: 0 0 0 9px rgba(143,191,107,0); }
+  100% { box-shadow: 0 0 0 0 rgba(143,191,107,0); }
+}
+
+.hero__etiqueta {
+  display: block;
+  margin-top: 22px;
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: .34em;
+  text-transform: uppercase;
+  color: rgba(255, 248, 240, .72);
+}
+
+/* Titular editorial: la segunda línea entra hacia dentro, rompiendo la
+   simetría del típico hero centrado. */
+.hero__titulo {
+  font-family: var(--f-display);
+  font-variation-settings: 'opsz' 144;
+  /* Mayor que --t-3xl: este titular es el elemento más grande de toda la
+     web, y --t-3xl se quedaba corto para el peso que necesita el hero. */
+  font-size: clamp(3.2rem, 1.15rem + 7.7vw, 7.8rem);
+  font-weight: 400;
+  line-height: .94;
+  letter-spacing: -.028em;
+  margin-top: 14px;
+  max-width: 15ch;
+}
+.hero__titulo span { display: block; }
+.hero__titulo .linea-2 {
+  margin-left: clamp(0px, 7vw, 128px);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--c-laton);
+}
+
+.hero__texto {
+  margin-top: clamp(20px, 2.6vw, 32px);
+  max-width: 46ch;
+  font-size: var(--t-md);
+  color: rgba(255, 248, 240, .84);
+}
+
+.hero__acciones {
+  margin-top: clamp(26px, 3.2vw, 40px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 13px;
+  align-items: center;
+}
+
+/* Indicador de scroll en el borde derecho */
+.hero__scroll {
+  position: absolute;
+  right: var(--pad-lateral);
+  bottom: var(--hero-pie);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: rgba(255, 248, 240, .66);
+  writing-mode: vertical-rl;
+  opacity: calc(1 - var(--progreso, 0) * 2.4);
+}
+.hero__scroll::after {
+  content: '';
+  width: 1px; height: 62px;
+  background: linear-gradient(to bottom, rgba(255,248,240,.7), transparent);
+  animation: cae 2.4s var(--ease) infinite;
+}
+@keyframes cae {
+  0%   { transform: scaleY(0); transform-origin: top; }
+  45%  { transform: scaleY(1); transform-origin: top; }
+  55%  { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+@media (max-width: 860px) {
+  .hero__scroll { display: none; }
+  .hero__titulo { max-width: 100%; }
+  .hero__titulo .linea-2 { margin-left: 0; }
+  .hero__acciones .btn { width: 100%; }
+  /* El rasgo final de la cursiva ("mediterránea") vuela por debajo de la
+     línea base y, con el titular más grande, se acerca demasiado al
+     párrafo siguiente. Un poco más de aire lo resuelve sin tocar el resto. */
+  .hero__texto { margin-top: clamp(30px, 7vw, 40px); }
+}
+
+/* El titular escala con el ANCHO (vw), así que en pantallas anchas pero poco
+   altas (portátiles 1366×768) el bloque de texto puede pasarse del alto del
+   hero antes de que el ancho lo justifique. Se corrige por alto de viewport,
+   no por ancho. */
+@media (max-height: 820px) {
+  .hero { --hero-pie: clamp(110px, 20vh, 210px); }
+  .hero__contenido { padding-top: calc(var(--nav-alto) + 14px); }
+  .hero__titulo { font-size: clamp(2.6rem, 1rem + 6vw, 5.8rem); margin-top: 8px; }
+  .hero__etiqueta { margin-top: 14px; }
+  .hero__texto { margin-top: 14px; }
+  .hero__acciones { margin-top: 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__estado::before, .hero__scroll::after { animation: none; }
+}
+
+/* ==========================================================================
+   CARTA
+   ========================================================================== */
+.carta { background: var(--c-fondo); }
+
+.carta__pista {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 20px;
+  padding: 9px 18px 9px 14px;
+  border-radius: var(--r-full);
+  background: color-mix(in srgb, var(--c-acento) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--c-acento) 32%, transparent);
+  color: var(--c-acento-fuerte);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: .01em;
+}
+.carta__pista svg {
+  width: 14px; height: 14px; flex: none;
+  fill: var(--c-acento-fuerte);
+}
+
+.carta__filtros {
+  position: sticky;
+  top: 62px;                      /* justo bajo la barra condensada */
+  z-index: 20;
+  margin-bottom: clamp(30px, 4vw, 52px);
+  padding: 16px 18px;
+  background: var(--glass-fondo);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--c-linea);
+  border-radius: var(--r-lg);
+}
+.carta__filtros .chips { gap: 8px; }
+
+.carta__alergenos-caja {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--c-linea);
+}
+.carta__alergenos-titulo {
+  display: inline-flex;
+  align-items: center;
+  gap: .55em;
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--c-tinta-tenue);
+  transition: color var(--dur-rapida) var(--ease);
+}
+.carta__alergenos-titulo:hover { color: var(--c-acento); }
+.carta__alergenos-titulo svg { transition: transform var(--dur-media) var(--ease); }
+.carta__alergenos-titulo[aria-expanded='false'] svg { transform: rotate(-90deg); }
+.carta__alergenos-titulo[aria-expanded='false'] ~ #carta-alergenos,
+.carta__alergenos-titulo[aria-expanded='false'] ~ #carta-limpiar { display: none; }
+
+.chip--alergeno { padding: 6px 13px; font-size: var(--t-xs); }
+
+/* Carril horizontal: en pantallas estrechas los chips no envuelven en cinco
+   filas — se deslizan en una sola, que es lo que espera un pulgar. */
+@media (max-width: 760px) {
+  .chips--carril {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2px;
+    margin-inline: -18px;
+    padding-inline: 18px;
+  }
+  .chips--carril::-webkit-scrollbar { display: none; }
+  .chips--carril > * { flex: 0 0 auto; scroll-snap-align: start; }
+  .carta__alergenos-caja { flex-direction: column; align-items: stretch; gap: 10px; }
+  .carta__alergenos-titulo { align-self: flex-start; }
+}
+
+.carta__bloque + .carta__bloque { margin-top: clamp(46px, 6vw, 84px); }
+
+.carta__categoria {
+  font-family: var(--f-display);
+  font-variation-settings: 'opsz' 60;
+  font-size: var(--t-lg);
+  font-weight: 400;
+  font-style: italic;
+  /* --t-lg baja de 24px en móvil: por debajo de ese tamaño hace falta la
+     variante de acento con más contraste (--c-acento se queda en 4,11:1 ahí). */
+  color: var(--c-acento-fuerte);
+  margin-bottom: clamp(20px, 2.6vw, 32px);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--c-linea);
+}
+
+.carta__platos {
+  display: grid;
+  gap: clamp(22px, 3vw, 40px) clamp(34px, 5vw, 76px);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+}
+
+/* --- Ficha de plato --------------------------------------------------------- */
+.plato { position: relative; }
+
+.plato__cab {
+  display: flex;
+  align-items: baseline;
+  width: 100%;
+  text-align: left;
+  gap: 0;
+  padding: 0 0 3px;
+  cursor: pointer;
+}
+
+.plato__nombre {
+  font-family: var(--f-display);
+  font-variation-settings: 'opsz' 40;
+  font-size: var(--t-md);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--c-tinta);
+  transition: color var(--dur-rapida) var(--ease);
+}
+.plato__cab:hover .plato__nombre { color: var(--c-acento); }
+
+/* Guía de puntos clásica de carta impresa */
+.plato__guia {
+  flex: 1 1 auto;
+  min-width: 18px;
+  align-self: flex-end;
+  margin: 0 10px 6px;
+  border-bottom: 1px dotted var(--c-linea-fuerte);
+}
+
+.plato--destacado .plato__nombre::after {
+  content: '';
+  display: inline-block;
+  width: 5px; height: 5px;
+  margin-left: 8px;
+  border-radius: 50%;
+  background: var(--c-laton);
+  vertical-align: middle;
+}
+
+.plato__desc {
+  margin-top: 5px;
+  font-size: var(--t-base);
+  line-height: 1.6;
+  color: var(--c-tinta-suave);
+  max-width: 54ch;
+}
+
+.plato__alergenos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 10px;
+}
+.alergeno {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--c-tinta-tenue);
+  border: 1px solid var(--c-linea);
+  border-radius: var(--r-full);
+  padding: 3px 9px;
+}
+
+/* Despliegue de la foto: 0fr → 1fr anima sin medir alturas en JS */
+.plato__foto {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--dur-media) var(--ease);
+}
+.plato.esta-abierto .plato__foto { grid-template-rows: 1fr; }
+.plato__medio { overflow: hidden; min-height: 0; }
+.plato__medio > * { margin-top: 16px; border-radius: var(--r-md); }
+.plato__medio img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity var(--dur-media) var(--ease);
+}
+.plato__medio img.esta-cargada { opacity: 1; }
+
+/* --- Marcador generativo (mientras no hay foto) ----------------------------- */
+.marcador {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  display: grid;
+  place-content: center;
+  gap: 8px;
+  overflow: hidden;
+  text-align: center;
+  background:
+    radial-gradient(120% 100% at 22% 12%, color-mix(in srgb, var(--c-laton) 22%, transparent), transparent 62%),
+    linear-gradient(142deg,
+      color-mix(in srgb, var(--c-acento) 11%, var(--c-fondo-alt)),
+      color-mix(in srgb, var(--c-oliva)  13%, var(--c-fondo-alt)));
+  border: 1px solid var(--c-linea);
+}
+/* La ola del logo, en marca de agua */
+.marcador::before {
+  content: '';
+  position: absolute;
+  inset: auto -6% -14% -6%;
+  height: 74%;
+  background: var(--c-acento);
+  opacity: .16;
+  -webkit-mask-image: var(--ola);
+  mask-image: var(--ola);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+:root {
+  --ola: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 90' preserveAspectRatio='none'%3E%3Cpath d='M0 44c22-16 44 6 70 8 26 2 44-14 66-14s44 16 64 10v42H0Z' fill='%23000'/%3E%3Cpath d='M0 66c24-14 46 6 72 7 26 1 42-12 62-12s46 14 66 8v21H0Z' fill='%23000' opacity='.6'/%3E%3C/svg%3E");
+}
+.marcador__inicial {
+  position: relative;
+  font-family: var(--f-display);
+  font-variation-settings: 'opsz' 144;
+  font-size: clamp(3rem, 8vw, 4.6rem);
+  font-weight: 300;
+  line-height: 1;
+  color: var(--c-acento);
+  opacity: .68;
+}
+.marcador__nota {
+  position: relative;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--c-tinta-tenue);
+}
+
+/* --- Foto flotante que sigue al cursor -------------------------------------- */
+.plato-flotante {
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 90;
+  width: 272px;
+  pointer-events: none;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  box-shadow: var(--sombra-alta);
+  opacity: 0;
+  scale: .92;
+  transition: opacity .34s var(--ease), scale .34s var(--ease);
+  will-change: transform;
+}
+.plato-flotante.esta-visible { opacity: 1; scale: 1; }
+.plato-flotante img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+
+.carta__vacio {
+  padding: 40px 0;
+  color: var(--c-tinta-suave);
+  font-style: italic;
+}
+
+.carta__nota {
+  margin-top: clamp(38px, 5vw, 66px);
+  padding-top: 22px;
+  border-top: 1px solid var(--c-linea);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 26px;
+  justify-content: space-between;
+  font-size: var(--t-sm);
+  color: var(--c-tinta-tenue);
+}
+
+@media (max-width: 600px) {
+  .carta__filtros { top: 56px; }
+  .plato__guia { display: none; }
+  .plato__cab { gap: 14px; justify-content: space-between; }
+}
+
+/* ==========================================================================
+   CONCEPTO
+   ========================================================================== */
+.concepto { background: var(--c-fondo-alt); position: relative; overflow: hidden; }
+
+.concepto__intro {
+  display: grid;
+  grid-template-columns: minmax(200px, 330px) 1fr;
+  gap: clamp(34px, 6vw, 96px);
+  align-items: center;
+}
+.concepto__pilares { margin-top: clamp(50px, 7vw, 96px); }
+
+/* --- El sello: la ola del logo se dibuja al entrar en pantalla -------------- */
+.sello { width: 100%; max-width: 330px; margin-inline: auto; display: block; overflow: visible; }
+
+.sello__aro {
+  fill: none;
+  stroke: var(--c-acento);
+  stroke-width: 2.4;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 2s var(--ease);
+}
+.sello__texto {
+  font-family: var(--f-display);
+  font-variation-settings: 'opsz' 60;
+  font-size: 19.5px;
+  font-weight: 600;
+  letter-spacing: 2.4px;
+  fill: var(--c-acento);
+  opacity: 0;
+  transition: opacity .9s var(--ease) .7s;
+}
+.sello__texto--abajo { font-size: 18px; letter-spacing: 5.5px; }
+
+.sello__trazo {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1.5s var(--ease);
+}
+.sello__trazo--terra { stroke: var(--c-acento); }
+.sello__trazo--oro   { stroke: var(--c-laton); }
+.sello__hojas use    { fill: var(--c-laton); }
+.sello__hojas { opacity: 0; transition: opacity 1s var(--ease) 1.05s; }
+
+.sello__ola > path:nth-child(1) { transition-delay: 100ms; }
+.sello__ola > path:nth-child(2) { transition-delay: 240ms; }
+.sello__ola > path:nth-child(3) { transition-delay: 400ms; }
+.sello__ola > path:nth-child(4) { transition-delay: 520ms; }
+.sello__ola > path:nth-child(5) { transition-delay: 640ms; }
+.sello__ola > path:nth-child(6) { transition-delay: 800ms; }
+.sello__ola > path:nth-child(7) { transition-delay: 920ms; }
+
+.concepto__sello.visible .sello__aro,
+.concepto__sello.visible .sello__trazo { stroke-dashoffset: 0; }
+.concepto__sello.visible .sello__texto,
+.concepto__sello.visible .sello__hojas { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sello__aro, .sello__trazo { stroke-dashoffset: 0; }
+  .sello__texto, .sello__hojas { opacity: 1; }
+}
+
+@media (max-width: 800px) {
+  .concepto__intro { grid-template-columns: 1fr; }
+  .sello { max-width: 230px; }
+}
+
+/* ==========================================================================
+   BODEGA & COCTELERÍA
+   ========================================================================== */
+.bodega { background: var(--c-fondo-hondo); position: relative; overflow: hidden; }
+
+/* De noche la sección se enciende: el latón pasa a primer plano */
+[data-tema='noche'] .bodega {
+  background:
+    radial-gradient(90% 60% at 50% 0%, rgba(226, 190, 114, .14), transparent 68%),
+    var(--c-fondo-hondo);
+}
+
+.bodega__banda {
+  margin-block: clamp(34px, 5vw, 66px);
+  /* Altura acotada al ancho nativo de la foto (1600 px) para no ampliarla */
+  height: clamp(200px, 24vw, 330px);
+  overflow: hidden;
+}
+/* Sin esto, <picture> queda con altura automática y el img de dentro no
+   puede resolver su height:100% — el "cover" no recorta, solo se ve tal cual
+   el tope de la imagen a tamaño natural. */
+.bodega__banda picture { display: block; height: 100%; }
+.bodega__banda img { width: 100%; height: 100%; object-fit: cover; object-position: center 55%; }
+
+.bodega__rejilla {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(34px, 5vw, 84px);
+}
+
+.bodega__titulo {
+  color: var(--c-acento);
+  font-style: italic;
+  font-weight: 400;
+  margin-bottom: clamp(16px, 2vw, 26px);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--c-linea);
+}
+
+/* --- Cócteles --------------------------------------------------------------- */
+.coctel { position: relative; padding-block: 17px; border-bottom: 1px solid var(--c-linea); }
+.coctel__fila { display: flex; align-items: center; gap: 16px; }
+.coctel__foto {
+  flex: none;
+  width: 72px; height: 72px;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  box-shadow: var(--sombra-suave);
+}
+.coctel__foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.coctel__texto { min-width: 0; flex: 1; }
+.coctel__cab { display: flex; justify-content: space-between; align-items: baseline; gap: 18px; }
+.coctel__nombre {
+  font-family: var(--f-display);
+  font-variation-settings: 'opsz' 40;
+  font-size: var(--t-md);
+  font-weight: 600;
+}
+.coctel__desc { margin-top: 5px; font-size: var(--t-base); color: var(--c-tinta-suave); max-width: 52ch; }
+
+/* El humo del Roble Ahumado, que se sirve bajo campana */
+.coctel--destacado::after {
+  content: '';
+  position: absolute;
+  right: 4%; top: 10px;
+  width: 44px; height: 56px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--c-laton) 60%, transparent), transparent 72%);
+  filter: blur(10px);
+  opacity: 0;
+  pointer-events: none;
+  animation: humo 6s var(--ease) infinite;
+}
+@keyframes humo {
+  0%   { opacity: 0;   transform: translateY(8px)   scale(.55); }
+  28%  { opacity: .5;  }
+  100% { opacity: 0;   transform: translateY(-52px) scale(1.6); }
+}
+[data-tema='noche'] .coctel--destacado::after { animation-name: humo-noche; }
+@keyframes humo-noche {
+  0%   { opacity: 0;   transform: translateY(8px)   scale(.55); }
+  28%  { opacity: .85; }
+  100% { opacity: 0;   transform: translateY(-58px) scale(1.7); }
+}
+
+/* --- Vinos ------------------------------------------------------------------ */
+.vino { padding-block: 15px; border-bottom: 1px solid var(--c-linea); }
+.vino__cab { display: flex; justify-content: space-between; align-items: baseline; gap: 18px; flex-wrap: wrap; }
+.vino__nombre {
+  font-family: var(--f-display);
+  font-variation-settings: 'opsz' 40;
+  font-size: var(--t-base);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: baseline;
+}
+.vino__nombre::before {
+  content: '';
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  margin-right: 10px;
+  flex: 0 0 auto;
+  transform: translateY(-1px);
+  background: var(--c-tinta-tenue);
+}
+[data-tipo='blanco'] .vino__nombre::before { background: #E0CB84; }
+[data-tipo='tinto']  .vino__nombre::before { background: #94414C; }
+[data-tipo='cava']   .vino__nombre::before { background: #D9E0D4; }
+
+.vino__precios { display: flex; gap: 20px; }
+.vino__precio { display: flex; flex-direction: column; align-items: flex-end; line-height: 1.25; }
+.vino__precio small {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--c-tinta-tenue);
+}
+.vino__desc { margin-top: 4px; font-size: var(--t-sm); color: var(--c-tinta-suave); max-width: 52ch; }
+
+@media (max-width: 800px) {
+  .bodega__rejilla { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   CHEF & EQUIPO
+   ========================================================================== */
+.equipo__rejilla {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(30px, 5vw, 84px);
+  align-items: center;
+}
+.equipo__medio img {
+  width: 100%;
+  border-radius: var(--r-lg);
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.equipo__datos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin: 0;
+  padding-top: clamp(22px, 3vw, 32px);
+  border-top: 1px solid var(--c-linea);
+}
+.equipo__datos dt {
+  font-family: var(--f-display);
+  font-variation-settings: 'opsz' 72;
+  font-size: clamp(1.4rem, 3vw, 2.1rem);
+  font-weight: 500;
+  color: var(--c-acento);
+  line-height: 1;
+}
+.equipo__datos dd {
+  margin: 7px 0 0;
+  font-size: var(--t-sm);
+  line-height: 1.4;
+  color: var(--c-tinta-suave);
+}
+
+@media (max-width: 800px) {
+  .equipo__rejilla { grid-template-columns: 1fr; }
+  .equipo__datos { grid-template-columns: 1fr; gap: 14px; }
+  .equipo__datos > div { display: flex; align-items: baseline; gap: 12px; }
+  .equipo__datos dd { margin-top: 0; }
+}
+
+/* ==========================================================================
+   GALERÍA
+   ========================================================================== */
+.galeria {
+  position: relative;
+  background: var(--c-fondo-hondo);
+  border-block: 1px solid var(--c-linea);
+}
+
+.galeria__pin { display: flex; flex-direction: column; justify-content: center; }
+.galeria.esta-anclada .galeria__pin {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.galeria__cabecera {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-block: clamp(44px, 7vh, 88px) clamp(22px, 3vh, 34px);
+}
+.galeria__ayuda {
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--c-tinta-tenue);
+}
+
+.galeria__carril {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(16px, 2vw, 30px);
+  padding-inline: var(--pad-lateral);
+  will-change: transform;
+}
+
+.galeria__foto { flex: 0 0 auto; width: clamp(280px, 38vw, 560px); margin: 0; }
+.galeria__foto--alta { width: clamp(230px, 29vw, 410px); }
+.galeria__foto img {
+  width: 100%;
+  height: clamp(230px, 42vh, 440px);
+  object-fit: cover;
+  border-radius: var(--r-md);
+}
+.galeria__foto--alta img { height: clamp(270px, 52vh, 540px); }
+.galeria__foto figcaption {
+  margin-top: 13px;
+  font-size: var(--t-sm);
+  line-height: 1.45;
+  color: var(--c-tinta-suave);
+  max-width: 34ch;
+}
+
+/* Barra de avance del carril */
+.galeria__barra {
+  height: 2px;
+  margin: clamp(22px, 3vh, 40px) var(--pad-lateral) 0;
+  background: var(--c-linea);
+  overflow: hidden;
+}
+.galeria__barra::after {
+  content: '';
+  display: block;
+  height: 100%;
+  width: calc(var(--avance, 0) * 100%);
+  min-width: 4%;
+  background: var(--c-acento);
+}
+
+/* Sin anclaje (móvil o movimiento reducido): carrusel táctil nativo */
+.galeria:not(.esta-anclada) { padding-bottom: clamp(46px, 6vw, 72px); }
+.galeria:not(.esta-anclada) .galeria__carril {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 8px;
+}
+.galeria:not(.esta-anclada) .galeria__carril::-webkit-scrollbar { display: none; }
+.galeria:not(.esta-anclada) .galeria__foto { scroll-snap-align: center; width: min(76vw, 340px); }
+.galeria:not(.esta-anclada) .galeria__foto--alta { width: min(66vw, 290px); }
+.galeria:not(.esta-anclada) .galeria__barra { display: none; }
+
+/* ==========================================================================
+   RESERVAS
+   ========================================================================== */
+.reservas { background: var(--c-fondo-alt); }
+
+.reservas__rejilla {
+  display: grid;
+  grid-template-columns: minmax(0, .82fr) minmax(0, 1fr);
+  gap: clamp(34px, 5vw, 84px);
+  align-items: start;
+}
+
+.reservas__contacto { display: flex; flex-direction: column; gap: 14px; }
+.reservas__contacto a,
+.reservas__horario {
+  display: inline-flex;
+  align-items: center;
+  gap: 13px;
+  color: var(--c-tinta-suave);
+  font-size: var(--t-base);
+  transition: color var(--dur-rapida) var(--ease);
+}
+.reservas__contacto a:hover { color: var(--c-acento); }
+.reservas__contacto svg {
+  width: 19px; height: 19px;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: var(--c-acento);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.reservas__grupos {
+  margin-top: clamp(26px, 3vw, 38px);
+  padding: 18px 22px;
+  border-left: 2px solid var(--c-laton);
+  background: color-mix(in srgb, var(--c-laton) 9%, transparent);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  font-size: var(--t-base);
+  color: var(--c-tinta-suave);
+}
+
+.reservas__caja {
+  background: var(--c-fondo);
+  border: 1px solid var(--c-linea);
+  border-radius: var(--r-lg);
+  padding: clamp(24px, 3.4vw, 44px);
+  box-shadow: var(--sombra-suave);
+}
+
+.reservas__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: clamp(22px, 3vw, 30px);
+}
+.reservas__acciones .btn { flex: 1 1 210px; }
+
+/* --- Confirmación ----------------------------------------------------------- */
+.reserva-exito { text-align: center; padding: clamp(16px, 3vw, 34px) 0; }
+.reserva-exito:focus { outline: none; }
+.reserva-exito__marca {
+  display: grid;
+  place-items: center;
+  width: 62px; height: 62px;
+  margin: 0 auto clamp(16px, 2vw, 24px);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--c-oliva) 18%, transparent);
+  color: var(--c-oliva);
+  animation: sello-ok .7s var(--ease) both;
+}
+[data-tema='noche'] .reserva-exito__marca { color: #8FBF6B; background: rgba(143, 191, 107, .16); }
+.reserva-exito__marca svg { width: 28px; height: 28px; }
+@keyframes sello-ok {
+  from { transform: scale(.6); opacity: 0; }
+  to   { transform: scale(1);  opacity: 1; }
+}
+.reserva-exito .parrafo { margin: 12px auto 22px; max-width: 40ch; }
+
+@media (max-width: 860px) {
+  .reservas__rejilla { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   UBICACIÓN
+   ========================================================================== */
+.ubicacion { background: var(--c-fondo); position: relative; overflow: hidden; }
+
+.ubicacion__rejilla {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 84px);
+  align-items: center;
+}
+
+.ubicacion__lista { margin: 0; display: flex; flex-direction: column; gap: clamp(20px, 2.6vw, 30px); }
+.ubicacion__lista dt {
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--c-acento-fuerte);
+  margin-bottom: 9px;
+}
+.ubicacion__lista dd { margin: 0; display: flex; flex-direction: column; gap: 5px; color: var(--c-tinta-suave); }
+.ubicacion__lista dd a { transition: color var(--dur-rapida) var(--ease); }
+.ubicacion__lista dd a:hover { color: var(--c-acento); }
+
+.ubicacion__medio { position: relative; }
+.ubicacion__medio img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--r-lg);
+}
+.ubicacion__cta {
+  position: absolute;
+  left: 50%; bottom: -22px;
+  transform: translateX(-50%);
+  width: auto;
+  white-space: nowrap;
+  box-shadow: var(--sombra-alta);
+}
+
+@media (max-width: 860px) {
+  .ubicacion__rejilla { grid-template-columns: 1fr; }
+  .ubicacion__medio { margin-bottom: 30px; }
+}
+
+/* ==========================================================================
+   EVENTOS & PRIVADOS
+   ========================================================================== */
+:root {
+  --tic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m4.5 12.5 5 5 10-11' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+.eventos { background: var(--c-fondo); }
+
+.eventos__rejilla {
+  display: grid;
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1fr);
+  gap: clamp(34px, 5vw, 84px);
+  align-items: start;
+}
+
+.eventos__ventajas { display: flex; flex-direction: column; gap: 13px; }
+.eventos__ventajas li {
+  display: flex;
+  gap: 13px;
+  align-items: flex-start;
+  color: var(--c-tinta-suave);
+  font-size: var(--t-base);
+}
+.eventos__ventajas li::before {
+  content: '';
+  flex: 0 0 auto;
+  width: 19px; height: 19px;
+  margin-top: 3px;
+  background: var(--c-acento);
+  -webkit-mask: var(--tic) center / contain no-repeat;
+  mask: var(--tic) center / contain no-repeat;
+}
+
+.eventos__caja {
+  background: var(--c-fondo-alt);
+  border: 1px solid var(--c-linea);
+  border-radius: var(--r-lg);
+  padding: clamp(24px, 3.4vw, 44px);
+}
+
+@media (max-width: 860px) {
+  .eventos__rejilla { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   TARJETA REGALO
+   ========================================================================== */
+.regalo { background: var(--c-fondo-alt); }
+.tarjeta--regalo { display: flex; flex-direction: column; gap: 11px; }
+.tarjeta--regalo h3 { color: var(--c-tinta); }
+.tarjeta--regalo .enlace { margin-top: auto; align-self: flex-start; padding-top: 6px; }
+
+/* ==========================================================================
+   CARTA QR (carta.html)
+   ========================================================================== */
+.qr-cab {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--glass-fondo);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--c-linea);
+  padding: 12px var(--pad-lateral);
+}
+.qr-cab__fila { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 12px; }
+.qr-cab__marca { display: flex; align-items: center; gap: 10px; margin-right: auto; }
+.qr-cab__marca img { width: 34px; height: 34px; }
+[data-tema='noche'] .qr-cab__marca img { filter: brightness(1.35) saturate(1.1); }
+
+.qr-buscar {
+  width: 100%;
+  margin-top: 10px;
+  padding: 11px 15px 11px 40px;
+  border: 1px solid var(--c-linea-fuerte);
+  border-radius: var(--r-full);
+  background: var(--c-fondo) var(--lupa) no-repeat 14px center / 16px;
+  font-size: 15px;
+  min-height: 46px;
+}
+.qr-buscar:focus { outline: none; border-color: var(--c-acento); }
+:root {
+  --lupa: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239A8E80' stroke-width='1.9' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='m15.5 15.5 4 4'/%3E%3C/svg%3E");
+}
+
+.qr-cuerpo { padding: clamp(18px, 3vw, 30px) var(--pad-lateral) 110px; max-width: 720px; margin-inline: auto; }
+.qr-cuerpo .carta__filtros {
+  position: static;
+  background: none;
+  backdrop-filter: none;
+  border: 1px solid var(--c-linea);
+  border-radius: var(--r-lg);
+  padding: 16px 18px;
+  margin-bottom: clamp(20px, 3vw, 32px);
+}
+.qr-cuerpo .carta__platos { grid-template-columns: 1fr; gap: 20px; }
+.qr-cuerpo .carta__bloque + .carta__bloque { margin-top: clamp(32px, 5vw, 52px); }
+
+/* Con "ver fotos" activo, todas las fichas muestran su imagen sin tocarlas */
+body.con-fotos .plato__foto { grid-template-rows: 1fr; }
+
+.qr-conmutador {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--c-tinta-suave);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.qr-conmutador input { position: absolute; opacity: 0; pointer-events: none; }
+.qr-conmutador__pista {
+  width: 38px; height: 22px;
+  border-radius: var(--r-full);
+  background: var(--c-fondo-hondo);
+  border: 1px solid var(--c-linea-fuerte);
+  position: relative;
+  transition: background-color var(--dur-rapida) var(--ease), border-color var(--dur-rapida) var(--ease);
+}
+.qr-conmutador__pista::after {
+  content: '';
+  position: absolute;
+  top: 2px; left: 2px;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: var(--c-tinta-tenue);
+  transition: transform var(--dur-rapida) var(--ease), background-color var(--dur-rapida) var(--ease);
+}
+.qr-conmutador input:checked + .qr-conmutador__pista { background: var(--c-acento); border-color: var(--c-acento); }
+.qr-conmutador input:checked + .qr-conmutador__pista::after { transform: translateX(16px); background: #FFF8F0; }
+.qr-conmutador input:focus-visible + .qr-conmutador__pista { outline: 2px solid var(--c-acento); outline-offset: 3px; }
+
+/* Barra de acciones fija abajo, al alcance del pulgar */
+.qr-barra {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 40;
+  display: flex;
+  gap: 10px;
+  padding: 12px var(--pad-lateral) calc(12px + env(safe-area-inset-bottom));
+  background: var(--glass-fondo);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-top: 1px solid var(--c-linea);
+}
+.qr-barra .btn { flex: 1; --btn-y: 13px; }
+
+.qr-pie {
+  padding: 26px var(--pad-lateral) 0;
+  border-top: 1px solid var(--c-linea);
+  margin-top: clamp(30px, 5vw, 48px);
+  font-size: var(--t-sm);
+  color: var(--c-tinta-tenue);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: center;
+}
+
+[data-tema='noche'] .bodega__titulo { color: var(--c-laton); }
+
+/* La lista la pinta JavaScript. Reservando el hueco mientras esta vacia,
+   el pie no se pinta arriba para irse abajo un instante despues: el
+   selector :empty deja de aplicar en cuanto hay platos, asi que no deja
+   hueco muerto al filtrar. */
+#carta-lista:empty { min-height: 100vh; }
