@@ -413,9 +413,15 @@
   background: var(--c-fondo);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 8px;
-  padding: calc(var(--nav-alto) + 24px) var(--pad-lateral) 40px;
+  padding: calc(var(--nav-alto) + 40px) var(--pad-lateral) 40px;
+  /* Con seis enlaces más el pie, en pantallas bajas o con el texto ampliado
+     el contenido puede superar el alto disponible. Centrarlo (como antes)
+     empujaba el primer enlace por encima del borde superior, pegado al
+     header, sin forma de hacer scroll para verlo entero. */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   opacity: 0;
   visibility: hidden;
   transform: translateY(-12px);

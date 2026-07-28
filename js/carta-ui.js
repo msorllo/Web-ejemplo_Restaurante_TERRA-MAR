@@ -139,9 +139,12 @@ window.TM = window.TM || {};
     return cont;
   }
 
-  /** Intenta traer la foto una sola vez; si no existe, el marcador se queda. */
+  /** Intenta traer la foto; si falla, el marcador se queda hasta el próximo
+      intento (reabrir la ficha, cambiar de filtro, alternar "ver fotos"…).
+      No se recuerda el fallo entre intentos: en móvil, con las fotos
+      pidiéndose todas de golpe al activar "ver fotos", una que falla por
+      la red no debe quedar rota el resto de la sesión si el fichero existe. */
   function pedirFoto(plato, art) {
-    if (fotos[plato.id] === false) return;
     var cont = art.querySelector('.plato__medio');
     if (!cont || cont.dataset.pedida) return;
     cont.dataset.pedida = '1';
